@@ -35,9 +35,9 @@ class AuthenticatedSessionController extends Controller
         }
         elseif($request->user()->role === 'user'){
             $url = '/dashboard';
-  ?        return redirect()->intended($url);
+        return redirect()->intended($url);
+    };
     }
-
     /**
      * Destroy an authenticated session.
      */
