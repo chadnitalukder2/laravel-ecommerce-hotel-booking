@@ -10,3 +10,7 @@ class AdminController extends Controller
         return view('admin.admin_dashboard');
     } //End Method
 }
+
+
+
+
