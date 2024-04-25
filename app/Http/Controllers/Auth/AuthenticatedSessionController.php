@@ -36,6 +36,10 @@ class AuthenticatedSessionController extends Controller
             $url = '/dashboard';
         }
     
+        elseif ($request->user()->name === 'Nitesh') {
+            $url = '/practice';
+        }
+        
         return redirect()->intended($url);
     }
     /**

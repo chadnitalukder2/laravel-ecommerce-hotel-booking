@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PracticeControler;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\PracticePage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +40,8 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
 
 });// End Admin  Group Middleware
 
+Route::middleware(['auth', 'practice:Nitesh'])->group(function(){
+
+    Route::get('/practice', [PracticeControler::class, 'practice'])->name('practice');
+
+});// End Admin  Group Middleware
