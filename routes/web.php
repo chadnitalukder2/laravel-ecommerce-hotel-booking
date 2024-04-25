@@ -39,3 +39,4 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
 
 });// End Admin  Group Middleware
 
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
