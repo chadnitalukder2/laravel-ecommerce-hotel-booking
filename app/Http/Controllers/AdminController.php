@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,12 +45,19 @@ class AdminController extends Controller
 
         if($request->file('photo')){
             $file = $request->file('photo');
+            @unlink(public_path('upload/admin_img/'.$data->photo));
             $filename = date('YmdHi').$file->getClientOriginalName();
             $file->move(public_path('upload/admin_img'), $filename);
             $data['photo'] = $filename;
         }
         $data->save();
-        return redirect()->back();
+
+        $notification = array(
+            'message' => 'Admin Profile Updated Successfully',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
 
     }
 
