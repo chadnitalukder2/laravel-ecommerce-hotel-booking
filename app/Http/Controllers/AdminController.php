@@ -74,7 +74,6 @@ class AdminController extends Controller
         $request->validate([
             'old_password' => 'required',
             'new_password'=> 'required|confirmed',
-            'new_password_confirmation'
         ]);
         if(!Hash::check($request->old_password, auth::user()->password)){
             $notification = array(
