@@ -28,7 +28,7 @@
             <ul>
                 <li> <a href="{{ route('all.team') }}"><i class='bx bx-radio-circle'></i>All Them</a>
                 </li>
-                <li> <a href=""><i class='bx bx-radio-circle'></i>Add Them</a>
+                <li> <a href="{{ route('add.team') }}"><i class='bx bx-radio-circle'></i>Add Them</a>
                 </li>
             </ul>
         </li>
