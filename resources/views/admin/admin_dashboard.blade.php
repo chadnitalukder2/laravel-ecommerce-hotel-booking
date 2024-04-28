@@ -27,7 +27,8 @@
 	<link rel="stylesheet" href="{{ asset ('backend/assets/css/header-colors.css') }}"/>
 	<!-- Toastr CSS -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-	<!-- Toastr  CSS -->
+	<!---dataTables--->
+	<link href=" {{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
 	<title> Admin Dashboard </title>
 </head>
 
@@ -106,6 +107,14 @@
  }
  @endif 
 </script>
+<!--------dataTable--------->
+<script src=" {{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+	<script src=" {{ asset('backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		  } );
+	</script>
 </body>
 
 </html>
