@@ -10,6 +10,6 @@ class TeamController extends Controller
 {
     public function AllTeam(){
         $team =Team::latest()->get() ;
-        return view('backend.team.all_team', compact($team));
+        return view('backend.team.all_team', compact('team'));
     }//end
 }
