@@ -26,9 +26,9 @@
                 <div class="menu-title">Manage Teams</div>
             </a>
             <ul>
-                <li> <a href="{{ route('all.team') }}"><i class='bx bx-radio-circle'></i>All Them</a>
+                <li> <a href="{{ route('all.team') }}"><i class='bx bx-radio-circle'></i>All Team</a>
                 </li>
-                <li> <a href="{{ route('add.team') }}"><i class='bx bx-radio-circle'></i>Add Them</a>
+                <li> <a href="{{ route('add.team') }}"><i class='bx bx-radio-circle'></i>Add Team</a>
                 </li>
             </ul>
         </li>

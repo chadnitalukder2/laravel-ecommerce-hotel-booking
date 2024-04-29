@@ -27,20 +27,66 @@ class TeamController extends Controller
         $image->move(public_path('upload/team_img'), $name_gen);
         $save_url = 'upload/team_img/'.$name_gen;
 
-    Team::insert([
-        'name' => $request->name,
-        'position' => $request->position,
-        'facebook' => $request->facebook,
-        'image' => $save_url,
-        'created_at' => Carbon::now(),
-    ]);
+        Team::insert([
+            'name' => $request->name,
+            'position' => $request->position,
+            'facebook' => $request->facebook,
+            'image' => $save_url,
+            'created_at' => Carbon::now(),
+        ]);
 
-    $notification = array(
-        'message' => 'Team Data Inserted Successfully',
-        'alert-type' => 'success'
-    );
+        $notification = array(
+            'message' => 'Team Data Inserted Successfully',
+            'alert-type' => 'success'
+        );
 
-    return redirect()->route('all.team')->with($notification);
+        return redirect()->route('all.team')->with($notification);
 
     }//end
+
+    public function EditTeam($id){
+        $team = Team::findOrFail($id);
+        return view('backend.team.edit_team', compact('team'));
+    }//end
+
+    public function TeamUpdate(Request $request){
+        $team_id = $request->id;
+
+        if($request->file('image')){
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('upload/team_img'), $name_gen);
+            $save_url = 'upload/team_img/'.$name_gen;
+
+            Team::findOrFail($team_id)->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'facebook' => $request->facebook,
+                'image' => $save_url,
+                'created_at' => Carbon::now(),
+            ]);
+            $notification = array(
+                'message' => 'Team Update With Image Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.team')->with($notification);
+
+        }else{
+            Team::findOrFail($team_id)->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'facebook' => $request->facebook,
+                'created_at' => Carbon::now(),
+            ]);
+            $notification = array(
+                'message' => 'Team Update Without Image Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.team')->with($notification);
+
+        }//end else
+       
+    }//end
+
+
 }
