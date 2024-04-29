@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\BookAreaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
     Route::get('/edit/team/{id}', 'EditTeam')->name('edit.team');
     Route::post('/team/update', 'TeamUpdate')->name('team.update');
     Route::get('/delete/team/{id}', 'DeleteTeam')->name('delete.team');
+    });
+
+     //Team all route
+     Route::controller(BookAreaController::class)->group(function(){
+        Route::get('/book/area', 'BookArea')->name('book.area');
+        
     });
   
 });
