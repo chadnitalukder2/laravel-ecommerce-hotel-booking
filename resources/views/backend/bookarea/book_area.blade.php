@@ -46,11 +46,11 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class=" col-sm-3">
-                        <h6 class="mb-0">Short Description</h6>
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Short Description </h6>
                     </div>
                     <div class="form-group col-sm-9 text-secondary">
-                        <input type="text" name="short_desc" class="form-control" value="{{ $book->short_desc }}"  />
+                        <textarea class="form-control" id="input40" name="short_desc" rows="3" placeholder="Description"> {{ $book->short_desc }} </textarea>
                     </div>
                 </div>
 
