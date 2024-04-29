@@ -59,7 +59,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
     Route::controller(TeamController::class)->group(function(){
     Route::get('/all/team', 'AllTeam')->name('all.team');
     Route::get('/add/team', 'AddTeam')->name('add.team');
-    Route::get('/team/store', 'TeamStore')->name('team.store');
+    Route::post('/team/store', 'TeamStore')->name('team.store');
     });
   
 });
