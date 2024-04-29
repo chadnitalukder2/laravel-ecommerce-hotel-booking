@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\BookAreaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -67,9 +68,14 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
     });
 
      //Team all route
-     Route::controller(BookAreaController::class)->group(function(){
+    Route::controller(BookAreaController::class)->group(function(){
         Route::get('/book/area', 'BookArea')->name('book.area');
         Route::post('/update/book/area', 'UpdateBookArea')->name('update.book.area');
+    });
+
+    //Room Type route
+    Route::controller(RoomTypeController::class)->group(function(){
+        Route::get('/room/type/list', 'RoomTypeList')->name('room.type.list');
     });
   
 });
