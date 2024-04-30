@@ -30,11 +30,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ( $team as $key => $item ) --}}
-                        @foreach ($allData as $key=> $item ) 
+                        @foreach ($allData as $key=> $item )
+                        @php
+                            $rooms = App\Models\Room::where('roomtype_id', $item->id)->get();
+
+                        @endphp 
                         <tr>
                             <td>{{ $key+1  }}</td>
-                            <td ></td>
+                            <td > <img src="{{ (!empty($item->room->image) ) ? url ('upload/room_img/'.$item->room->image) :url('upload/no_image.jpg') }}" style="width: 50px; height:30px" > </td>
                             <td>{{ $item->name }}</td>
                             <td>
                                 <a href="{{ route('edit.team',$item->id) }}" class="btn btn-warning px-3 radius-30">Edit</a>
