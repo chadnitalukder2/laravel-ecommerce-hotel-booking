@@ -20,8 +20,7 @@ class TeamController extends Controller
     }//end
 
     public function TeamStore(Request $request){
-
-    
+        
         $image = $request->file('image');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         $image->move(public_path('upload/team_img'), $name_gen);
