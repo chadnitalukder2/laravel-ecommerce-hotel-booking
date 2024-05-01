@@ -14,3 +14,6 @@ class RoomType extends Model
         return $this->belongsTo(Room::class, 'id', 'roomtype_id');
     }
 }
+
+
+
