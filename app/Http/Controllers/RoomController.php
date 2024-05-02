@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Facility;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\Count;
 
 class RoomController extends Controller
 {
@@ -38,6 +39,26 @@ class RoomController extends Controller
             $room['image'] = $filename;
         }
         $room->save();
+
+        //Update Facility table
+        if($request->facility_name == NULL){
+
+            $notification = array(
+                'message' => 'Sorry Not Any Basic Facility Select',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+
+        }else{
+            Facility::where('room_id', $id)->delete();
+            $facilities = Count($request->facility_name);
+            for($i = 0; $i < $facilities; $i++){
+                $fcount = new Facility();
+                $fcount->room_id = $room->id;
+                $fcount->facility_name = $request->facility_name[$i];
+                $fcount->save();
+            }
+        }
 
 
     }//end
