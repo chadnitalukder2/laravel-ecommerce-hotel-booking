@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('total_adult')->nullable();
             $table->string('total_child')->nullable();
             $table->string('room_capacity')->nullable();
+            $table->string('image')->nullable();
             $table->integer('price')->nullable();
             $table->string('size')->nullable();
             $table->string('view')->nullable();

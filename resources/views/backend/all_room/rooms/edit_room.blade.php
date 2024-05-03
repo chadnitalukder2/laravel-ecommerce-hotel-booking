@@ -64,7 +64,7 @@
 
     <div class="col-md-6">
         <label for="input4" class="form-label">Gallery Image</label>
-        <input type="file" name="multi_img[]"  class="form-control" multiple id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png" >
+        <input type="file" name="multi_image[]"  class="form-control" multiple id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png" >
         
         <div class="row" id="preview_img">
 
@@ -98,7 +98,7 @@
     </div>
     <div class="col-md-6">
         <label for="input7" class="form-label">Room View</label>
-        <select id="input7" name="viw" class="form-select">
+        <select id="input7" name="view" class="form-select">
             <option selected="">Choose...</option>
             <option value="Sea View" >Sea View</option>
             <option value="Holl View">Holl View</option>
