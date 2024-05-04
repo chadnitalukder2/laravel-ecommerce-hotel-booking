@@ -96,4 +96,28 @@ class RoomController extends Controller
 
         return redirect()->back()->with($notification); 
     }//end
+
+
+    public function MultiImageDelete($id){
+        $deleteData = MultiImage::where('id', $id)->first();
+        if($deleteData){
+            $imagePath = $deleteData->multi_image;
+
+            //Check if the file exists before unlinking
+            if(file_exists($imagePath)){
+                unlink($imagePath);
+                echo "Image Unlink Successfully";
+            }else{
+                echo "Image does not exist";
+            }
+            //Delete The Record Database
+            MultiImage::where('id', $id)->delete();
+        }
+        $notification = array(
+            'message' => 'Multi Image Delete Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+    }//end method
 }

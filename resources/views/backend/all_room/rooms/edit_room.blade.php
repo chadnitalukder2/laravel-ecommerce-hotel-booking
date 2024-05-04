@@ -68,7 +68,7 @@
         @foreach ($multi_imgs as $item)
         <img  src="{{ (!empty($item->multi_image)) ? url('upload/room_img/multi_img/'.$item->multi_image) : url('upload/no_image.jpg') }}" alt="Admin" class="bg-primary"width="70" height="50px"> 
 
-        <a href=""> <i class="lni lni-close"></i></a>
+        <a href=" {{ route('multi.image.delete',$item->id) }}"> <i class="lni lni-close"></i></a>
 
         @endforeach
         <div class="row" id="preview_img"></div>
