@@ -25,7 +25,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="tab-icon"><i class="bx bx-user-pin font-18 me-1"></i>
                                         </div>
-                                        <div class="tab-title">Room Number</div>
+                                        <div class="tab-title">Room Number </div>
                                     </div>
                                 </a>
                             </li>
@@ -44,7 +44,7 @@
 <form class="row g-3" action="{{ route('update.room',$editData->id) }}" method="POST"  enctype="multipart/form-data">
  @csrf
     <div class="col-md-4">
-        <label for="input1" class="form-label">Room Type Name</label>
+        <label for="input1" class="form-label">Room Type Name </label>
         <input type="text" class="form-control" name="roomtype_id" id="input1" value="{{ $editData['roomType']['name'] }}">
     </div>
     <div class="col-md-4">
@@ -113,9 +113,9 @@
         <label for="input11" class="form-label">Short Description</label>
         <textarea name="short_desc"  class="form-control" id="input11"  rows="3">{{ $editData->short_desc }}</textarea>
     </div>
-    <div class="col-md-12">
+   <div class="col-md-12">   {{-- id="myeditorinstance" --}}
         <label for="input11" class="form-label"> Description </label>
-        <textarea name="description" class="form-control" id="myeditorinstance" > {!! $editData->description !!}</textarea>
+        <textarea name="description" class="form-control"  > {!! $editData->description !!}</textarea>
     </div>
        
         <div class="row mt-2 ">
@@ -226,51 +226,71 @@
                             </div> {{-- end  primaryhome--}}
 <!--==================================End Manage Room==================================================-->
 <!--==================================Start Room Nmber====primaryprofile==============================================-->
+       <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
+            <div class="card">
+                <div class="card-body">
+                    <a onclick="addRoomNo()" id="addRoomNo" class="card-title btn btn-primary float-right" >
+                        <i class="lni lni-plus">Add New </i>
+                    </a>
+                    <div class="roomnoHide" id="roomnoHide">
+                        <form action="">
 
-<div class="tab-pane fade" id="primaryprofile" role="tabpanel">
-    
-    <div class="card">
-        <div class="card-body">
-            <a href="" class="card-title btn btn-primary float-right">
-                <i class="lni lni-plus">Add New</i>
-            </a>
+                            <div class="row">
+                            <div class="col-md-4">
+                                <label for="input2" class="form-label">Room No </label>
+                                <input type="text" name="room_no" class="form-control" id="input2" >
+                            </div>
 
-            <div class="roomnoHide" id="roomnoHide">
-                <form action="">
+                            <div class="col-md-4">
+                                <label for="input7" class="form-label">Status </label>
+                                <select name="view" id="input7" class="form-select">
+                                    <option selected="">Select Status...</option>
+                                    <option value="Active">Active </option>
+                                    <option value="Inactive">Inactive  </option>
 
-                    <div class="row">
-                    <div class="col-md-4">
-                        <label for="input2" class="form-label">Room No </label>
-                        <input type="text" name="room_no" class="form-control" id="input2" >
+                                </select>
+                            </div> 
+
+                            <div class="col-md-4">
+
+                                <button type="submit" class="btn btn-success" style="margin-top: 28px;">Save</button>
+
+                            </div>
+
+
+                        </div>
+
+                        </form>
                     </div>
-    
-                    <div class="col-md-4">
-                        <label for="input7" class="form-label">Status </label>
-                        <select name="view" id="input7" class="form-select">
-                            <option selected="">Select Status...</option>
-                            <option value="Active">Active </option>
-                            <option value="Inactive">Inactive  </option>
-    
-                        </select>
-                    </div> 
-    
-                    <div class="col-md-4">
-    
-                        <button type="submit" class="btn btn-success" style="margin-top: 28px;">Save</button>
-    
-                    </div>
-    
-    
-                </div>
-    
-                </form>
+                    
+        <table class="table mb-0 table-striped" id="roomview">
+            <thead>
+                <tr>
+                    <th scope="col">Room Number</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>
+    <a href=" " class="btn btn-warning px-3 radius-30"> Edit</a>
+    <a href=" " class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>  
+
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
             </div>
-        </div>
-    </div>
+        </div> 
 
 
-</div>
-<!--==================================Start Room Nmber====primaryprofile==============================================-->
+<!--==================================end Room Nmber====primaryprofile==============================================-->
   
                 </div>
             </div>
@@ -293,9 +313,9 @@
             reader.readAsDataURL(e.target.files['0']);
         });
     });
-    </script>    
+</script>    
 
-    <!--------===Show MultiImage ========------->
+<!---============start Show MultiImage ==============-->
 <script>
     $(document).ready(function(){
      $('#multiImg').on('change', function(){ //on file input change
@@ -334,19 +354,19 @@
                    <label for="basic_facility_name">Room Facilities</label>
                    <select name="facility_name[]" id="basic_facility_name" class="form-control">
                          <option value="">Select Facility</option>
-  <option value="Complimentary Breakfast">Complimentary Breakfast</option>
-  <option value="32/42 inch LED TV" > 32/42 inch LED TV</option>
-  <option value="Smoke alarms" >Smoke alarms</option>
-  <option value="Minibar"> Minibar</option>
-  <option value="Work Desk" >Work Desk</option>
-  <option value="Free Wi-Fi">Free Wi-Fi</option>
-  <option value="Safety box" >Safety box</option>
-  <option value="Rain Shower" >Rain Shower</option>
-  <option value="Slippers" >Slippers</option>
-  <option value="Hair dryer" >Hair dryer</option>
-  <option value="Wake-up service" >Wake-up service</option>
-  <option value="Laundry & Dry Cleaning" >Laundry & Dry Cleaning</option>
-  <option value="Electronic door lock" >Electronic door lock</option> 
+                        <option value="Complimentary Breakfast">Complimentary Breakfast</option>
+                        <option value="32/42 inch LED TV" > 32/42 inch LED TV</option>
+                        <option value="Smoke alarms" >Smoke alarms</option>
+                        <option value="Minibar"> Minibar</option>
+                        <option value="Work Desk" >Work Desk</option>
+                        <option value="Free Wi-Fi">Free Wi-Fi</option>
+                        <option value="Safety box" >Safety box</option>
+                        <option value="Rain Shower" >Rain Shower</option>
+                        <option value="Slippers" >Slippers</option>
+                        <option value="Hair dryer" >Hair dryer</option>
+                        <option value="Wake-up service" >Wake-up service</option>
+                        <option value="Laundry & Dry Cleaning" >Laundry & Dry Cleaning</option>
+                        <option value="Electronic door lock" >Electronic door lock</option> 
                    </select>
                 </div>
                 <div class="form-group col-md-6" style="padding-top: 20px">
@@ -357,8 +377,8 @@
           </div>
        </div>
     </div>
- </div>
- 
+</div>
+ <!---===============end Show MultiImage ==================--->
  <script type="text/javascript">
     $(document).ready(function(){
        var counter = 0;
@@ -374,8 +394,29 @@
     });
  </script>
  <!--========== End of Basic Plan Facilities ==============-->
- 
+
+ <!--========== Start Room Number Add ==============-->
+ <script>
+
+$('#roomnoHide').hide();
+$('#roomview').show();
+
+function addRoomNo(){
+    $('#roomnoHide').show();
+    $('#roomview').hide();
+     $('#addRoomNo').hide();
+}
+
+ </script>
+ <!--========== End  Room Number Add ==============-->
  
  
 
-@endsection
+
+ @endsection
+
+
+
+
+
+ 
