@@ -58,17 +58,20 @@
     <div class="col-md-6">
         <label for="input3" class="form-label">Main Image</label>
         <input type="file" name="image" class="form-control" id="image" >
-        <img id="showImage" src="{{ (!empty($editData->image)) ?  url('upload/room_img/'.$editData->image) : url('upload/no_image.jpg') }}" alt="Admin" class=" bg-primary" width="60">
+        <img id="showImage" src="{{ (!empty($editData->image)) ?  url('upload/room_img/'.$editData->image) : url('upload/no_image.jpg') }}" alt="Admin" class=" bg-primary" width="70" height="50px">
     </div>
 
 
     <div class="col-md-6">
         <label for="input4" class="form-label">Gallery Image</label>
         <input type="file" name="multi_image[]"  class="form-control" multiple id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png" >
-        
-        <div class="row" id="preview_img">
+        @foreach ($multi_imgs as $item)
+        <img  src="{{ (!empty($item->multi_image)) ? url('upload/room_img/multi_img/'.$item->multi_image) : url('upload/no_image.jpg') }}" alt="Admin" class="bg-primary"width="70" height="50px"> 
 
-        </div>
+        <a href=""> <i class="lni lni-close"></i></a>
+
+        @endforeach
+        <div class="row" id="preview_img"></div>
     </div>
 
     <div class="col-md-3">
@@ -111,7 +114,7 @@
     </div>
     <div class="col-md-12">
         <label for="input11" class="form-label"> Description </label>
-        <textarea name="description" class="form-control" id="myeditorinstance" >Hello, World {!! $editData->description !!}</textarea>
+        <textarea name="description" class="form-control" id="myeditorinstance" > {!! $editData->description !!}</textarea>
     </div>
        
         <div class="row mt-2 ">

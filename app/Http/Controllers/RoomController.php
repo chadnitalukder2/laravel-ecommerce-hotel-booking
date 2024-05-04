@@ -12,8 +12,9 @@ class RoomController extends Controller
 {
     public function EditRoom($id){
         $basic_facility = Facility::where('room_id', $id)->get(); 
+        $multi_imgs = MultiImage::where('room_id', $id)->get(); 
         $editData = Room::find($id);
-        return view('backend.all_room.rooms.edit_room', compact('editData', 'basic_facility'));
+        return view('backend.all_room.rooms.edit_room', compact('editData', 'basic_facility','multi_imgs' ));
     }//end 
 
     public function UpdateRoom(Request $request, $id){
@@ -76,8 +77,9 @@ class RoomController extends Controller
             if(!empty($files)){
                 foreach($files as $file){
                     $imgName = date('YmdHi').$file->getClientOriginalName();
-                    $file->move('upload/room_img/multi_img/'.$imgName);
+                    $file->move(public_path('upload/room_img/multi_img/'), $imgName);
                     $subimage['multi_image'] = $imgName;
+
 
                     $subimage = new MultiImage();
                     $subimage->room_id = $room->id;
