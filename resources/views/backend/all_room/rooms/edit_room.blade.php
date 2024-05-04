@@ -8,7 +8,6 @@
         <div class="main-body">
             <div class="row">
                 <div class="col-lg-12">
-                   
 
                     <div class="card-body">
                         <ul class="nav nav-tabs nav-primary" role="tablist">
@@ -31,6 +30,8 @@
                                 </a>
                             </li>
                         </ul>
+
+<!--==================================Start Manage Room==================================================-->
 
                         <div class="tab-content py-3">
                             <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
@@ -223,14 +224,56 @@
                                 </div>
 
                             </div> {{-- end  primaryhome--}}
+<!--==================================End Manage Room==================================================-->
+<!--==================================Start Room Nmber====primaryprofile==============================================-->
 
-                        {{-- -------------------------------- --}}
-                            <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
-                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-                            </div>
-                        
-                        </div>
+<div class="tab-pane fade" id="primaryprofile" role="tabpanel">
+    
+    <div class="card">
+        <div class="card-body">
+            <a href="" class="card-title btn btn-primary float-right">
+                <i class="lni lni-plus">Add New</i>
+            </a>
+
+            <div class="roomnoHide" id="roomnoHide">
+                <form action="">
+
+                    <div class="row">
+                    <div class="col-md-4">
+                        <label for="input2" class="form-label">Room No </label>
+                        <input type="text" name="room_no" class="form-control" id="input2" >
                     </div>
+    
+                    <div class="col-md-4">
+                        <label for="input7" class="form-label">Status </label>
+                        <select name="view" id="input7" class="form-select">
+                            <option selected="">Select Status...</option>
+                            <option value="Active">Active </option>
+                            <option value="Inactive">Inactive  </option>
+    
+                        </select>
+                    </div> 
+    
+                    <div class="col-md-4">
+    
+                        <button type="submit" class="btn btn-success" style="margin-top: 28px;">Save</button>
+    
+                    </div>
+    
+    
+                </div>
+    
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!--==================================Start Room Nmber====primaryprofile==============================================-->
+  
+                </div>
+            </div>
 
 
                 </div>
