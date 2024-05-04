@@ -91,17 +91,17 @@
         <label for="input7" class="form-label">Bed Style</label>
         <select id="input7" name="bed_style" class="form-select">
             <option selected="">Choose...</option>
-            <option value="Queen Bed" >Queen Bed</option>
-            <option value="Twin Bed" >Twin Bed</option>
-            <option value="King Bed" >King Bed</option>
+            <option value="Queen Bed" {{$editData->bed_style == 'Queen Bed'?'selected':''}}>Queen Bed</option>
+            <option value="Twin Bed" {{$editData->bed_style == 'Twin Bed'?'selected':''}}>Twin Bed</option>
+            <option value="King Bed" {{$editData->bed_style == 'King Bed'?'selected':''}}>King Bed</option>
         </select>
     </div>
     <div class="col-md-6">
         <label for="input7" class="form-label">Room View</label>
         <select id="input7" name="view" class="form-select">
             <option selected="">Choose...</option>
-            <option value="Sea View" >Sea View</option>
-            <option value="Holl View">Holl View</option>
+            <option value="Sea View" {{$editData->view == 'Sea View'?'selected':''}}>Sea View</option>
+            <option value="Hill View" {{$editData->view == 'Hill View'?'selected':''}} >Hill View</option>
         </select>
     </div>
 
@@ -124,11 +124,11 @@
                         <select name="facility_name[]" id="basic_facility_name" class="form-control">
                               <option value="">Select Facility</option>
                               <option value="Complimentary Breakfast" {{$item->facility_name == 'Complimentary Breakfast'?'selected':''}}>Complimentary Breakfast</option>
-             <option value="32/42 inch LED TV"  {{$item->facility_name == 'Complimentary Breakfast'?'selected':''}}> 32/42 inch LED TV</option>
+             <option value="32/42 inch LED TV"  {{$item->facility_name == '32/42 inch LED TV'?'selected':''}}> 32/42 inch LED TV</option>
            
             <option value="Smoke alarms"  {{$item->facility_name == 'Smoke alarms'?'selected':''}}>Smoke alarms</option>
            
-            <option value="Minibar" {{$item->facility_name == 'Complimentary Breakfast'?'selected':''}}> Minibar</option>
+            <option value="Minibar" {{$item->facility_name == 'Minibar'?'selected':''}}> Minibar</option>
            
             <option value="Work Desk"  {{$item->facility_name == 'Work Desk'?'selected':''}}>Work Desk</option>
            
