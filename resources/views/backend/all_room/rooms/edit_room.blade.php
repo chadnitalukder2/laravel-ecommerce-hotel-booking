@@ -280,8 +280,8 @@
                     <td>{{ $item->room_no }}</td>
                     <td>{{ $item->status }}</td>
                     <td>
-                        <a href=" " class="btn btn-warning px-3 radius-30"> Edit</a>
-                        <a href=" " class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>  
+                        <a href="{{ route('edit.room.no', $item->id) }}" class="btn btn-warning px-3 radius-30"> Edit</a>
+                        <a href=" {{ route('delete.room.no', $item->id) }} " class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>  
 
                     </td>
                 </tr>
