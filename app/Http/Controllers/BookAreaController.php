@@ -10,6 +10,7 @@ class BookAreaController extends Controller
 {
     public function BookArea(){
         $book = BookArea::find(1);
+        return $book;
         return view('backend.bookarea.book_area',compact('book'));
     }//end
 
@@ -52,5 +53,7 @@ class BookAreaController extends Controller
         }//end else
        
 
-    }
+    }//end
 }
+
+

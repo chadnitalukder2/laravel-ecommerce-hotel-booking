@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\Room;
+use App\Models\RoomNumber;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\Constraint\Count;
 
@@ -120,4 +121,26 @@ class RoomController extends Controller
 
         return redirect()->back()->with($notification); 
     }//end method
+
+    public function StoreRoomNumber(Request $request, $id){
+        $data = new RoomNumber();
+
+        $data->room_id = $id;
+        $data->room_type_id = $request->room_type_id;
+        $data->room_no = $request->room_no;
+        $data->status = $request->status;
+        $data->save();
+
+          $notification = array(
+            'message' => 'Room Number Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+
+    }//end method
+
+
+
+
 }

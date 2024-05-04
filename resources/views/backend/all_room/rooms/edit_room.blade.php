@@ -233,7 +233,10 @@
                         <i class="lni lni-plus">Add New </i>
                     </a>
                     <div class="roomnoHide" id="roomnoHide">
-                        <form action="">
+                        <form action="{{ route('store.room.number',$editData->id) }}" method="post">
+                            @csrf
+
+                            <input type="hidden" name="room_type_id" value="{{ $editData->roomtype_id }}">
 
                             <div class="row">
                             <div class="col-md-4">
@@ -243,7 +246,7 @@
 
                             <div class="col-md-4">
                                 <label for="input7" class="form-label">Status </label>
-                                <select name="view" id="input7" class="form-select">
+                                <select name="status" id="input7" class="form-select">
                                     <option selected="">Select Status...</option>
                                     <option value="Active">Active </option>
                                     <option value="Inactive">Inactive  </option>
@@ -277,8 +280,8 @@
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>
-    <a href=" " class="btn btn-warning px-3 radius-30"> Edit</a>
-    <a href=" " class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>  
+                        <a href=" " class="btn btn-warning px-3 radius-30"> Edit</a>
+                        <a href=" " class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>  
 
                     </td>
                 </tr>
@@ -286,8 +289,8 @@
             </tbody>
         </table>
 
-            </div>
-        </div> 
+    </div>
+</div> 
 
 
 <!--==================================end Room Nmber====primaryprofile==============================================-->
