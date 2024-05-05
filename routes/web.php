@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\BookAreaController;
+use App\Http\Controllers\FrontendRoomController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
@@ -60,12 +61,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
     
     //Team all route
     Route::controller(TeamController::class)->group(function(){
-    Route::get('/all/team', 'AllTeam')->name('all.team');
-    Route::get('/add/team', 'AddTeam')->name('add.team');
-    Route::post('/team/store', 'TeamStore')->name('team.store');
-    Route::get('/edit/team/{id}', 'EditTeam')->name('edit.team');
-    Route::post('/team/update', 'TeamUpdate')->name('team.update');
-    Route::get('/delete/team/{id}', 'DeleteTeam')->name('delete.team');
+        Route::get('/all/team', 'AllTeam')->name('all.team');
+        Route::get('/add/team', 'AddTeam')->name('add.team');
+        Route::post('/team/store', 'TeamStore')->name('team.store');
+        Route::get('/edit/team/{id}', 'EditTeam')->name('edit.team');
+        Route::post('/team/update', 'TeamUpdate')->name('team.update');
+        Route::get('/delete/team/{id}', 'DeleteTeam')->name('delete.team');
     });
 
      //Team all route
@@ -86,7 +87,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/edit/room/{id}', 'EditRoom')->name('edit.room');
         Route::post('/update/room/{id}', 'UpdateRoom')->name('update.room');
         Route::get('/delete/room/{id}', 'DeleteRoom')->name('delete.room');
-        
+
         Route::get('/multi/image/delete/{id}', 'MultiImageDelete')->name('multi.image.delete');
 
         Route::post('/store/room/number/{id}', 'StoreRoomNumber')->name('store.room.number');
@@ -95,6 +96,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
          Route::get('/delete/room/no/{id}', 'DeleteRoomNo')->name('delete.room.no');
     });
   
-});
+}); //end middleware
 
+
+//Frontend Room
+Route::controller(FrontendRoomController::class)->group(function () {
+    Route::get('/rooms', 'frontendRoomAll')->name('froom.all');
+    
+});
   
