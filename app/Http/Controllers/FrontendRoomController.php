@@ -18,6 +18,7 @@ class FrontendRoomController extends Controller
         $roomDetails = Room::find($id);
         $multiImage = MultiImage::where('room_id', $id)->get();
         $facility = Facility::where('room_id', $id)->get();
-        return view('frontend.room.room_details', compact('roomDetails', 'multiImage', 'facility'));
+        $otherRooms = Room::where('id' ,'!=', $id)->orderBy('id', 'DESC') ->limit(2)->get();
+        return view('frontend.room.room_details', compact('roomDetails', 'multiImage', 'facility', 'otherRooms'));
     } // End Method 
 }
