@@ -58,7 +58,7 @@
                             <ul class="dropdown-menu">
                                  @foreach ($room  as $item) 
                                 <li class="nav-item">
-                                    <a href="room.html" class="nav-link">
+                                    <a href="{{ url('room/details/'.$item->id) }}" class="nav-link">
                                         {{ $item['roomType']['name'] }}
                                     </a>
                                 </li>
