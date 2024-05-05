@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="{{ url ('/') }}" class="nav-link active">
                                 Home 
                             </a>
                            
@@ -47,21 +47,22 @@
                             </a>
                         </li>
 
+    @php
+        $room = App\Models\Room::latest()->get();
+    @endphp
+
                         <li class="nav-item">
                             <a href="{{ route('froom.all') }}" class="nav-link">
                                All Rooms
                             </a>
                             <ul class="dropdown-menu">
+                                 @foreach ($room  as $item) 
                                 <li class="nav-item">
                                     <a href="room.html" class="nav-link">
-                                        Rooms 
+                                        {{ $item['roomType']['name'] }}
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="room-details.html" class="nav-link">
-                                        Room Details 
-                                    </a>
-                                </li>
+                               @endforeach
                             </ul>
                         </li>
 
