@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('discount')->default(0);
             $table->text('short_desc')->nullable();
             $table->string('description')->nullable();
-            $table->integer('status')->default(0);
+            $table->integer('status')->default(1);
             $table->integer('name')->nullable();
             $table->timestamps();
         });
