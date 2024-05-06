@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\Room;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 
 class FrontendRoomController extends Controller
@@ -21,4 +23,23 @@ class FrontendRoomController extends Controller
         $otherRooms = Room::where('id' ,'!=', $id)->orderBy('id', 'DESC') ->limit(2)->get();
         return view('frontend.room.room_details', compact('roomDetails', 'multiImage', 'facility', 'otherRooms'));
     } // End Method 
+
+    public function BookingSearch(Request $request){
+        $request->flash();
+
+        if($request->check_in == $request->check_out){
+            $notification = array(
+                'message' => 'Something want to wrong',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+        $sdate = date('Y-m-d', strtotime($request->check_in));
+        $edate = date('Y-m-d', strtotime($request->check_out));
+        $alldate = Carbon::create($edate)->subDay();
+        $d_period = CarbonPeriod::create($sdate, $alldate);
+
+
+    }//end method
 }

@@ -103,5 +103,6 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
 Route::controller(FrontendRoomController::class)->group(function () {
     Route::get('/rooms', 'frontendRoomAll')->name('froom.all');
     Route::get('/room/details/{id}', 'RoomDetailsPage');
+    Route::get('/bookings', 'BookingSearch')->name('booking.search');
 });
   
