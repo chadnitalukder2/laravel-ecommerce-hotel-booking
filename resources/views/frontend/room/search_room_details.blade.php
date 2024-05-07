@@ -31,8 +31,9 @@
                                     <div class="form-group">
                                         <label>Check in</label>
                                         <div class="input-group">
-                                            <input id="datetimepicker" type="text" class="form-control" placeholder="09/29/2020">
-                                            <span class="input-group-addon"></span>
+                                            <input autocomplete="off" type="text" required name="check_in" id="check_in" class="form-control dt_picker" value="{{ old('check_in') ? date('Y-m-d', strtotime(old('check_in'))) : '' }}">
+
+                                             <span class="input-group-addon"></span>
                                         </div>
                                         <i class='bx bxs-calendar'></i>
                                     </div>
@@ -42,8 +43,8 @@
                                     <div class="form-group">
                                         <label>Check Out</label>
                                         <div class="input-group">
-                                            <input id="datetimepicker-check" type="text" class="form-control" placeholder="09/29/2020">
-                                            <span class="input-group-addon"></span>
+  <input autocomplete="off"  type="text" required name="check_out" id="check_out"  class="form-control dt_picker" value="{{ old('check_out') ? date('Y-m-d', strtotime(old('check_out'))) : '' }}" >                                        
+                                           <span class="input-group-addon"></span>
                                         </div>
                                         <i class='bx bxs-calendar'></i>
                                     </div>
@@ -52,13 +53,11 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>Numbers of Persons</label>
-                                        <select class="form-control">
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                        </select>	
+                                            <select class="form-control" name="person" id="nmbr_person">
+                                                @for ($i = 1; $i <= 4; $i++) 
+                                                <option {{ old('person') == $i ? 'selected' : '' }} value="0{{ $i }}" >0{{ $i }} </option>
+                                                @endfor
+                                            </select>	
                                     </div>
                                 </div>
 
@@ -93,7 +92,7 @@
                     <div class="room-details-slider owl-carousel owl-theme">
                      @foreach ($multiImage as $image) 
                         <div class="room-details-item">
-                            <img src="{{ asset('upload/room_img/multi_img/'.$image->multi_image) }}" width="1000px" height="700px" alt="Images">
+                            <img  src="{{ asset('upload/room_img/multi_img/'.$image->multi_image) }}"  alt="Images" width="1000px" height="700px" >
                         </div>
                         @endforeach
                     </div>
