@@ -116,6 +116,7 @@ Route::middleware(['auth'])->group(function(){
 //CheckOut All Route
     Route::controller(BookingController::class)->group(function () {
         Route::get('/checkout', 'Checkout')->name('checkout');
+        Route::post('/booking/store/{id}', 'BookingStore')->name('user_booking_store');
        
     });
 
