@@ -13,7 +13,7 @@
         @foreach ($team as $item) 
             <div class="team-item">
                 <a href="team.html">
-                   <img src="{{ asset($item->image) }}" alt="Images">
+                   <img src="{{ asset($item->image) }}" alt="Images" width="550px" height="670px">
                 </a>
                 <div class="content">
                     <h3><a href="team.html">{{ $item->name }}</a></h3>

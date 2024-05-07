@@ -45,10 +45,11 @@ class FrontendRoomController extends Controller
         foreach ($d_period as $period){
             array_push($dt_array, date('Y-m-d', strtotime($period)));
         }
+    
         $check_date_booking_ids = RoomBookedDate::whereIn('book_date', $dt_array)->distinct()->pluck('booking_id')->toArray();
 
         $rooms = Room::withCount('room_number')->where('status', 1)->get();
-
+       
         return view('frontend.room.search_room', compact('rooms', 'check_date_booking_ids'));
 
 

@@ -33,13 +33,17 @@
                 @foreach ( $rooms as $item )
 
                 @php
+                
                     $bookings = App\Models\Booking::withCount('assign_rooms')
                     ->whereIn('id', $check_date_booking_ids)->where('room_id', $item->id)->get()->toArray();
 
                     $total_book_room = array_sum(array_column($bookings, 'assign_rooms_count'));
                     
-                    $av_room = @$item->room_numbers_count-$total_book_room ;
-                
+                    $av_room = $item->room_number_count - $total_book_room;
+
+                // var_dump($item->room_number_count);
+               
+                //  echo old('person');
                 @endphp
 
                 @if ($av_room > 0 && old('person') <= $item->total_adult )
