@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\BookAreaController;
+use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\FrontendRoomController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
@@ -109,4 +110,14 @@ Route::controller(FrontendRoomController::class)->group(function () {
 
     Route::get('/check_room_availability', 'CheckRoomAvailability')->name('check_room_availability');
 });
+
+//Auth Middleware user must have login for access this route
+Route::middleware(['auth'])->group(function(){
+//CheckOut All Route
+    Route::controller(BookingController::class)->group(function () {
+        Route::get('/checkout', 'Checkout')->name('checkout');
+       
+    });
+
+});//end group auth middleware
   
