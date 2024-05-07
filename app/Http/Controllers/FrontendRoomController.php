@@ -54,4 +54,15 @@ class FrontendRoomController extends Controller
 
 
     }//end method
+
+    public function SearchRoomDetails(Request $request, $id){
+        $request->flash();
+        $roomDetails = Room::find($id);
+        $multiImage = MultiImage::where('room_id', $id)->get();
+        $facility = Facility::where('room_id', $id)->get();
+
+        $otherRooms = Room::where('id', '!=', $id)->orderBy('id', 'DESC')->limit(2)->get();
+        $room_id = $id;
+        return view('frontend.room.search_room_details', compact('roomDetails', 'multiImage', 'facility', 'otherRooms', 'room_id'));
+    }//end method
 }
