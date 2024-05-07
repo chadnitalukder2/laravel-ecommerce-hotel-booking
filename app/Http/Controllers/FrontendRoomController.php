@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\Room;
@@ -65,4 +66,35 @@ class FrontendRoomController extends Controller
         $room_id = $id;
         return view('frontend.room.search_room_details', compact('roomDetails', 'multiImage', 'facility', 'otherRooms', 'room_id'));
     }//end method
+
+    public function CheckRoomAvailability(Request $request){
+
+        $sdate = date('Y-m-d', strtotime($request->check_in));
+        $edate = date('Y-m-d', strtotime($request->check_out));
+        $alldate = Carbon::create($edate)->subDay();
+        $d_period = CarbonPeriod::create($sdate, $alldate);
+        $dt_array = [];
+        foreach ($d_period as $period) {
+            array_push($dt_array, date('Y-m-d', strtotime($period)));
+        }
+
+        $check_date_booking_ids = RoomBookedDate::whereIn('book_date', $dt_array)->distinct()->pluck('booking_id')->toArray();
+
+        $room = Room::withCount('room_number')->find($request->room_id);
+
+        $bookings = Booking::withCount('assign_rooms')->whereIn('id', $check_date_booking_ids)->where('room_id', $room->id)->get()->toArray();
+
+        $total_book_room = array_sum(array_column($bookings, 'assign_rooms_count'));
+
+        $av_room = @$room->room_number_count - $total_book_room;
+       
+
+        $toDate = Carbon::parse($request->check_in);
+        $fromDate = Carbon::parse($request->check_out);
+        $nights = $toDate->diffInDays($fromDate);
+    
+
+        return response()->json(['available_room' => $av_room, 'total_nights' => $nights]);
+
+    }
 }
