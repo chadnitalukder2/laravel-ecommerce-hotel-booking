@@ -126,10 +126,10 @@
                                     <hr>
 
                                     <div style="display: flex">
-                                          <img style="height:100px; width:120px;object-fit: cover" src=" " alt="Images" alt="Images">
+                                          <img style="height:100px; width:120px;object-fit: cover" src=" {{ (!empty($room->image)) ? url('upload/room_img/'.$room->image) : url('upload/no_image.jpg') }} " alt="Images" alt="Images">
                                           <div style="padding-left: 10px;">
-                                                <a href=" " style="font-size: 20px; color: #595959;font-weight: bold">Room Name</a>
-                                                <p><b>120 / Night</b></p>
+                                                <a href=" " style="font-size: 20px; color: #595959;font-weight: bold">{{ @$room['roomType']['name'] }}</a>
+                                                <p><b>${{ $room->price }} / Night</b></p>
                                           </div>
 
                                     </div>
@@ -180,6 +180,7 @@
                                 <input type="radio" id="paypal" name="radio-group">
                                 <label for="paypal">PayPal</label>
                             </p>
+                             <p>Session Value : {{ json_encode(session('book_date')) }}</p>
                             <p>
                                 <input type="radio" id="cash-on-delivery" name="radio-group">
                                 <label for="cash-on-delivery">Cash On Delivery</label>
