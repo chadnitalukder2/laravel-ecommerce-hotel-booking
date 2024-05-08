@@ -87,7 +87,7 @@ class BookingController extends Controller
         $total_nights = $toDate->diffInDays($fromDate);
 
         $room = Room::find($book_data['room_id']);
-        $subtotal = $room->price * $total_nights * $book_data['number_of_rooms'];
+        $subtotal = $room->price * $total_nights * (int)$book_data['number_of_rooms'];
         $discount = ($room->discount / 100) * $subtotal;
         $total_price = $subtotal - $discount;
         $code = rand(000000000, 999999999);

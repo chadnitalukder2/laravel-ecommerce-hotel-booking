@@ -21,7 +21,7 @@
 <!-- Checkout Area -->
 <section class="checkout-area pt-100 pb-70">
     <div class="container">
-        <form method="post" role="form" action="{{ route('checkout.store') }}">
+       <form role="form" method="post" action="{{ route('checkout_store') }}" class="stripe_form require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}">
             @csrf
             <div class="row">
                 <div class="col-lg-8">
@@ -119,20 +119,14 @@
                                     <br>
 
                                     <table class="table" style="width: 100%">
-                                        @php
-                                            $room_numbr = ($book_data['number_of_rooms']);
-                                            if (is_numeric($room_numbr)) {
-                                                $subtotal = $room->price * $nights * $room_numbr;
-                                            } else {
-                                                $subtotal = 0; 
-                                            }
-                                        @endphp
-                                      <h1>subtotal : {{  $subtotal }} </h1>  
+                                    
+                                     
 
-                                       {{-- @php
-                                           $subtotal = $room->price * $nights * $book_data['number_of_rooms']; 
+                                       @php
+                                           $subtotal = $room->price * $nights * (int)$book_data['number_of_rooms']; 
                                            $discount =($room->discount/100)*$subtotal;  
-                                       @endphp --}}
+                                       @endphp
+                                        <h1>subtotal : {{ $book_data['number_of_rooms'] }} </h1>  
                                         
                                         <tr>
                                             <td><p>Total Night <br> <b> ( {{ $book_data['check_in'] }} - {{ $book_data['check_out'] }})</b></p></td>
@@ -175,10 +169,36 @@
                                 <input type="radio" id="cash-on-delivery" name="payment_method" value="COD">
                                 <label for="cash-on-delivery">Cash On Delivery</label>
                             </p>
-                            <p>
-                                <input type="radio" id="paypal" name="radio-group">
-                                <label for="paypal">Stripe</label>
-                            </p>
+                             <p>
+       <input type="radio" class="pay_method" id="stripe" name="payment_method" value="Stripe">
+        <label for="stripe">Stripe</label>
+          </p>
+
+
+           <div id="stripe_pay" class="d-none">
+        <br>
+        <div class="form-row row">
+              <div class="col-xs-12 form-group required">
+                    <label class="control-label">Name on Card</label>
+                    <input class="form-control" size="4" type="text" />
+              </div>
+        </div>
+        <div class="form-row row">
+              <div class="col-xs-12 form-group  required">
+                    <label class="control-label">Card Number</label>
+                    <input autocomplete="off" class="form-control card-number" size="20" type="text" />
+              </div>
+        </div>
+        <div class="form-row row">
+              <div class="col-xs-12 col-md-4 form-group cvc required"><label class="control-label">CVC</label><input autocomplete="off" class="form-control card-cvc" placeholder="ex. 311" size="4" type="text" /></div>
+              <div class="col-xs-12 col-md-4 form-group expiration required"><label class="control-label">Expiration Month</label><input class="form-control card-expiry-month" placeholder="MM" size="2" type="text" /></div>
+              <div class="col-xs-12 col-md-4 form-group expiration required"><label class="control-label">Expiration Year</label><input class="form-control card-expiry-year" placeholder="YYYY" size="4" type="text" /></div>
+        </div>
+        <div class="form-row row">
+              <div class="col-md-12 error form-group hide"><div class="alert-danger alert">Please correct the errors and try again.</div></div>
+        </div>
+  </div>
+
                              {{-- <p>Session Value : {{ json_encode(session('book_date')) }}</p> --}}
                            
                         </div>
