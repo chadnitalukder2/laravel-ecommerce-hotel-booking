@@ -76,7 +76,7 @@
                                         <label>Numbers of Rooms</label>
                                         <select class="form-control number_of_rooms" name="number_of_rooms" id="select_room">
                                            @for ( $i = 1; $i <= 5; $i++ )
-                                               <option value="0 {{ $i }}" >0 {{ $i }}</option>
+                                               <option value="{{ $i }}" >0 {{ $i }}</option>
                                            @endfor
                                         </select>	
                                     </div>
@@ -354,7 +354,8 @@
        var discount_price = (parseInt(discount_p)/100)*sub_total;
        $(".t_subtotal").text(sub_total);
        $(".t_discount").text(discount_price);
-       $(".t_g_total").text(sub_total-discount_price);
+       $(".t_g_total").text(sub_total - discount_price);
+        
     }
     $("#bk_form").on('submit', function () {
        var av_room = $("#available_room").val();

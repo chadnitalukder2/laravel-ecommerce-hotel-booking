@@ -1,5 +1,6 @@
 @extends('frontend.main_master');
- @section('main')
+ @section('main');
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
  
 <!-- Inner Banner -->
  <div class="inner-banner inner-bg7">
@@ -123,11 +124,9 @@
                                      
 
                                        @php
-                                           $subtotal = $room->price * $nights * (int)$book_data['number_of_rooms']; 
+                                           $subtotal = $room->price * $nights * $book_data['number_of_rooms']; 
                                            $discount =($room->discount/100)*$subtotal;  
                                        @endphp
-                                        <h1>subtotal : {{ $book_data['number_of_rooms'] }} </h1>  
-                                        
                                         <tr>
                                             <td><p>Total Night <br> <b> ( {{ $book_data['check_in'] }} - {{ $book_data['check_out'] }})</b></p></td>
                                             <td style="text-align: right"><p> {{ $nights }} Days</p></td>
@@ -143,14 +142,14 @@
                                           </tr>
                                           <tr>
                                                 <td><p>Subtotal</p></td>
-                                                {{-- <td style="text-align: right"><p>${{ $subtotal }}</p></td> --}}
+                                                <td style="text-align: right"><p>${{ $subtotal }}</p></td>
                                             </tr>
                                                 <td><p>Discount</p></td>
-                                                {{-- <td style="text-align:right"> <p>${{ $discount }}</p></td> --}}
+                                                <td style="text-align:right"> <p>${{ $discount }}</p></td>
                                             </tr>
                                             <tr>
                                                 <td><p>Total</p></td>
-                                                {{-- <td style="text-align:right"> <p>${{ $subtotal-$discount }}</p></td> --}}
+                                                <td style="text-align:right"> <p>${{ $subtotal - $discount }}</p></td>
                                             </tr>
                                     </table>
 
@@ -203,7 +202,7 @@
                            
                         </div>
 
-                       <button type="submit" class="order-btn">Place to Order</button>
+                       <button type="submit" class="order-btn" id="myButton">Place to Order</button>
 
                     </div>
                 </div>
@@ -215,6 +214,109 @@
 
 
 
+ <style>
+            .hide{display:none}
+      </style>
+
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+<script type="text/javascript">
+
+      $(document).ready(function () {
+
+            $(".pay_method").on('click', function () {
+                  var payment_method = $(this).val();
+                  if (payment_method == 'Stripe'){
+                        $("#stripe_pay").removeClass('d-none');
+                  }else{
+                        $("#stripe_pay").addClass('d-none');
+                  }
+            });
+
+      });
+
+
+
+
+
+
+      $(function() {
+            var $form = $(".require-validation");
+            $('form.require-validation').bind('submit', function(e) {
+
+                  var pay_method = $('input[name="payment_method"]:checked').val();
+                  if (pay_method == undefined){
+                        alert('Please select a payment method');
+                        return false;
+                  }else if(pay_method == 'COD'){
+
+                  }else{
+                        document.getElementById('myButton').disabled = true;
+
+                        var $form         = $(".require-validation"),
+                                inputSelector = ['input[type=email]', 'input[type=password]',
+                                      'input[type=text]', 'input[type=file]',
+                                      'textarea'].join(', '),
+                                $inputs       = $form.find('.required').find(inputSelector),
+                                $errorMessage = $form.find('div.error'),
+                                valid         = true;
+                        $errorMessage.addClass('hide');
+
+                        $('.has-error').removeClass('has-error');
+                        $inputs.each(function(i, el) {
+                              var $input = $(el);
+                              if ($input.val() === '') {
+                                    $input.parent().addClass('has-error');
+                                    $errorMessage.removeClass('hide');
+                                    e.preventDefault();
+                              }
+                        });
+
+                        if (!$form.data('cc-on-file')) {
+
+                              e.preventDefault();
+                              Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                              Stripe.createToken({
+                                    number: $('.card-number').val(),
+                                    cvc: $('.card-cvc').val(),
+                                    exp_month: $('.card-expiry-month').val(),
+                                    exp_year: $('.card-expiry-year').val()
+                              }, stripeResponseHandler);
+                        }
+                  }
+
+
+
+            });
+
+
+
+            function stripeResponseHandler(status, response) {
+                  if (response.error) {
+
+                        document.getElementById('myButton').disabled = false;
+
+                        $('.error')
+                                .removeClass('hide')
+                                .find('.alert')
+                                .text(response.error.message);
+                  } else {
+
+                        document.getElementById('myButton').disabled = true;
+                        document.getElementById('myButton').value = 'Please Wait...';
+
+                        // token contains id, last4, and card type
+                        var token = response['id'];
+                        // insert the token into the form so it gets submitted to the server
+                        $form.find('input[type=text]').empty();
+                        $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                        $form.get(0).submit();
+                  }
+            }
+
+      });
+</script>
 
 
 
