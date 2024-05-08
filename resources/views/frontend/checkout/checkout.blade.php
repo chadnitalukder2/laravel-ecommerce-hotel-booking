@@ -179,7 +179,7 @@
                                 <input type="radio" id="paypal" name="radio-group">
                                 <label for="paypal">Stripe</label>
                             </p>
-                             <p>Session Value : {{ json_encode(session('book_date')) }}</p>
+                             {{-- <p>Session Value : {{ json_encode(session('book_date')) }}</p> --}}
                            
                         </div>
 
