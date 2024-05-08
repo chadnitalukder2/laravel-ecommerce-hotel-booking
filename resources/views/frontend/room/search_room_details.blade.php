@@ -90,17 +90,17 @@
                                         <tbody>
                                         <tr> 
                                             <td><p> SubTotal</p></td>
-                                            <td style="text-align: right" > <span class="t_subtotal">0</span> </td> 
+                                            <td style="text-align: right" > <span class="t_subtotal"> 0 </span> </td> 
                                         </tr>
 
                                         <tr> 
                                             <td><p> Discount</p></td>
-                                            <td style="text-align: right" ><span class="t_discount">0</span></td> 
+                                            <td style="text-align: right" ><span class="t_discount"> 0 </span></td> 
                                         </tr>
 
                                         <tr> 
                                             <td><p> Total</p></td>
-                                            <td style="text-align: right" ><span class="t_g_total">0</span></td> 
+                                            <td style="text-align: right" ><span class="t_g_total"> 0 </span></td> 
                                         </tr>
 
                                         </tbody>
