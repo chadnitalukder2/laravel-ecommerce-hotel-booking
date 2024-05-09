@@ -96,6 +96,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::post('/update/room/number/{id}', 'UpdateRoomNumber')->name('update.room.number');
          Route::get('/delete/room/no/{id}', 'DeleteRoomNo')->name('delete.room.no');
     });
+
+    //Admin Booking All Route
+    Route::controller(BookingController::class)->group(function () {
+        Route::get('/booking/list', 'BookingList')->name('booking.list');
+      
+    });
   
 }); //end middleware
 
