@@ -118,6 +118,9 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/checkout', 'Checkout')->name('checkout');
         Route::post('/booking/store/', 'BookingStore')->name('user_booking_store');
         Route::post('/checkout/store/', 'CheckoutStore')->name('checkout_store');
+
+        Route::match(['get', 'post'], '/stripe_pay', [BookingController::class, 'stripe_pay'])->name('stripe_pay');
+
     });
 
 });//end group auth middleware
