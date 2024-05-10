@@ -89,7 +89,7 @@ class BookingController extends Controller
         $total_nights = $toDate->diffInDays($fromDate);
 
         $room = Room::find($book_data['room_id']);
-        $subtotal = $room->price * $total_nights * (int)$book_data['number_of_rooms'];
+        $subtotal = $room->price * $total_nights * $book_data['number_of_rooms'];
         $discount = ($room->discount / 100) * $subtotal;
         $total_price = $subtotal - $discount;
         $code = rand(000000000, 999999999);
@@ -199,6 +199,42 @@ public function UpdateBookingStatus(Request $request, $id){
         return redirect()->back()->with($notification);  
 }//end Method
 
+public function UpdateBooking(Request $request, $id){
+    
+        if ($request->available_room < $request->number_of_rooms) {
+
+            $notification = array(
+                'message' => 'Something Want To Wrong!',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+        $data = Booking::find($id);
+        $data->number_of_rooms = $request->number_of_rooms;
+        $data->check_in = date('Y-m-d', strtotime($request->check_in));
+        $data->check_out = date('Y-m-d', strtotime($request->check_out));
+        $data->save();
+
+        RoomBookedDate::where('booking_id', $id)->delete();
+        $sdate = date('Y-m-d', strtotime($request->check_in));
+        $edate = date('Y-m-d', strtotime($request->check_out));
+        $eldate = Carbon::create($edate)->subDay();
+        $d_period = CarbonPeriod::create($sdate, $eldate);
+        foreach ($d_period as $period) {
+            $booked_dates = new RoomBookedDate();
+            $booked_dates->booking_id = $data->id;
+            $booked_dates->room_id = $data->room_id;
+            $booked_dates->book_date = date('Y-m-d', strtotime($period));
+            $booked_dates->save();
+        }
+
+        $notification = array(
+            'message' => 'Booking Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);   
+
+}//End Method
 
 
 
