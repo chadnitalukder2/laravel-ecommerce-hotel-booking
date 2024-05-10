@@ -225,7 +225,7 @@
                         </div>
                         <input type="hidden" name="number_of_rooms" class="form-control" value="{{ $editData->number_of_rooms }}" id="available_room">
                         <div class="col-md-12 mb-2">
-                            <label for="" >Availablity: <span class="text-success availablity " id="availablity"></span> </label>
+                            <label for="">Availability: <span class="text-success availability"></span> </label>
                         </div>
 
                         <div class="mt-2">
@@ -280,12 +280,12 @@
    $(document).ready(function (){
         getAvaility();
      });
-     
+
     function getAvaility(){
         var check_in = $('#check_in').val();
         var check_out = $('#check_out').val();
         var room_id =" {{ $editData->room_id }}";
-
+    
         $.ajax({
          url: "{{ route('check_room_availability') }}",
          data: {room_id:room_id, check_in:check_in, check_out:check_out},
@@ -294,9 +294,6 @@
             $("#available_room").val(data['available_room']);
          }
       }); 
-
-    
-
 
     }//end method
 </script>
