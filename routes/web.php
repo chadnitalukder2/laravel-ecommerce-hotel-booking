@@ -101,7 +101,8 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
     Route::controller(BookingController::class)->group(function () {
         Route::get('/booking/list', 'BookingList')->name('booking.list');
         Route::get('/edit/booking/{id}', 'EditBooking')->name('edit.booking');
-      
+     //Booking Update
+        Route::post('/update/booking/status/{id}', 'UpdateBookingStatus')->name('update.booking.status');
     });
   
 }); //end middleware

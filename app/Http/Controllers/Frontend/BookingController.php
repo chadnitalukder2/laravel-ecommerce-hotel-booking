@@ -173,7 +173,7 @@ class BookingController extends Controller
 
 
 
-//Admin Related Route
+//======================Admin Related Route==============================================================
 
 public function BookingList(){
     $allData = Booking::orderBy('id', 'desc')->get();
@@ -187,7 +187,17 @@ public function EditBooking($id){
 
 }//End Method
 
-
+public function UpdateBookingStatus(Request $request, $id){
+    $booking = Booking::find($id);
+    $booking->payment_status = $request->payment_status;
+    $booking->status = $request->status;
+    $booking->save();
+        $notification = array(
+            'message' => 'Information Update Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);  
+}//end Method
 
 
 
