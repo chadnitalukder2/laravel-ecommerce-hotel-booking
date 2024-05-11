@@ -81,7 +81,7 @@
                 <div class="menu-title">Manage Room List</div>
             </a>
             <ul>
-                <li> <a href="{{ route(view.room.list) }}"><i class='bx bx-radio-circle'></i>Room List</a>
+                <li> <a href="{{ route('view.room.list') }}"><i class='bx bx-radio-circle'></i>Room List</a>
                 </li>
             </ul>
       
