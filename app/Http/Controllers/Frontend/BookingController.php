@@ -236,6 +236,9 @@ public function UpdateBooking(Request $request, $id){
 
 }//End Method
 
+public function AssignRoom(){
+    
+}
 
 
 
