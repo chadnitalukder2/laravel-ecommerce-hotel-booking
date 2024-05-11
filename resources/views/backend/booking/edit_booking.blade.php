@@ -304,16 +304,17 @@
 <script>
    $(document).ready(function (){
         getAvaility();
-        |$(".assign_room").on('click', function(){
-            $ajax({
-                url:"{{ route('assign_room', $editData->id) }}"
-                success: function(data){
-                    $('.myModal .modal-body').html(data);
-                    $('.myModal').modal('show');
-                }
-            });
-            return false;
+     $(".assign_room").on('click', function(){
+        $.ajax({
+            url: "{{ route('assign_room', $editData->id) }}",
+            success: function(data){
+                $('.myModal .modal-body').html(data);
+                $('.myModal').modal('show');
+            }
         });
+        return false;
+    });
+
      });
 
     function getAvaility(){
