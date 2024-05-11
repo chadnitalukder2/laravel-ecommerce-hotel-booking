@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\RoomListController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\BookAreaController;
 use App\Http\Controllers\Frontend\BookingController;
@@ -109,6 +110,13 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/assign_room/{id}', 'AssignRoom')->name('assign_room');
         Route::get('/assign_room/store/{booking_id}/{room_number_id}', 'AssignRoomStore')->name('assign_room_store');
         Route::get('/assign_room_delete/{id}', 'AssignRoomDelete')->name('assign_room_delete');
+
+    });
+
+    //Admin Room List CRoute
+    Route::controller(RoomListController::class)->group(function () {
+        Route::get('/view/room/list', 'ViewRoomList')->name('view.room.list');
+     
     });
   
 }); //end middleware
