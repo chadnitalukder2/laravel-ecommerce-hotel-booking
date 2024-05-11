@@ -285,6 +285,19 @@ public function AssignRoomStore($booking_id, $room_number_id){
 
 }//End Method
 
+public function AssignRoomDelete($id){
+    $assign_room = BookingRoomList::find($id);
+    $assign_room->delete();
+
+        $notification = array(
+            'message' => ' Assign Room Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification); 
+
+
+}//End Method
+
 
 
 
