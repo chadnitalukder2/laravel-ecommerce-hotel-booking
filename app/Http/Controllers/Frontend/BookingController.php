@@ -175,7 +175,7 @@ class BookingController extends Controller
     public function UserBooking(){
         $id = Auth::user()->id;
         $allData = Booking::where('user_id', $id)->orderBy('id', 'desc')->get();
-        return view('frontend.dashboard.user_booking');
+        return view('frontend.dashboard.user_booking', compact('allData'));
     }//end method
 
 
