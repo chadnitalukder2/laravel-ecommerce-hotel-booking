@@ -28,7 +28,8 @@
             <div class="card-body p-4">
 
 
-    <form class="row g-3">
+    <form method="POST" action="{{ route('store.room.list') }}" class="row g-3" >
+        @csrf
         <div class="col-md-4">
             <label for="roomtype_id" class="form-label">Room Type</label>
             <select id="room_id" name="room_id" class="form-select">
@@ -52,9 +53,9 @@
 
         <div class="col-md-6">
             <label for="input3" class="form-label">Room</label>
-            <input type="number" name="number_of_rooms" class="form-control" >
+            <input type="hidden" name="number_of_rooms" class="form-control" >
 
-            <input type="hidden" name="available_room" class="form-control" >
+            <input type="text" name="available_room" id="available_room" class="form-control" >
             <div class="mt-2">
                 <label for="">Availability <span class="text-success availability"></span> </label>
             </div>
