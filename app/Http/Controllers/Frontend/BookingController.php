@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BookConfirm;
 use App\Models\Booking;
 use App\Models\BookingRoomList;
 use App\Models\Room;
@@ -14,6 +15,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Stripe;
 use Stripe\Stripe as StripeStripe;
 
@@ -209,6 +211,20 @@ public function UpdateBookingStatus(Request $request, $id){
     $booking->payment_status = $request->payment_status;
     $booking->status = $request->status;
     $booking->save();
+
+    //Start Send Email
+    $sendmail = Booking::fin($id);
+    $data =[
+        'check_in' => $sendmail->check_in,
+        'check_out' => $sendmail->check_out,
+        'name' => $sendmail->name,
+        'email' => $sendmail->email,
+        'phone' => $sendmail->phone
+    ];
+    Mail::to($sendmail->email)->send(new BookConfirm($data));
+
+   //End Send Email
+
         $notification = array(
             'message' => 'Information Update Successfully',
             'alert-type' => 'success'
