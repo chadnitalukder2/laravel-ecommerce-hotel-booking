@@ -55,19 +55,27 @@
             <th scope="col">Room</th>
             <th scope="col">Check In/Out</th>
             <th scope="col">Total Room</th>
-            <th scope="col">Guest</th> 
+            <th scope="col">Status</th> 
             </tr>
         </thead>
         <tbody>
             @foreach ($allData as $item) 
             <tr>
-            <td>{{ $item->code }}</td>
+            <td> <a href="{{ route('user.invoice', $item->id) }}">
+                {{ $item->code }}
+            </a></td>
             <td>{{ $item->created_at->format('d/m/Y') }}</td>
             <td>{{ $item['user']['name'] }}</td>
             <td>{{ $item['room']['roomType']['name'] }}</td>
             <td> <span class="badge bg-primary">{{ $item->check_in }}</span>  <span class="badge bg-warning text-dark">{{ $item->check_out }}</span> </td>
             <td>{{ $item->number_of_rooms }}</td>
-            <td>{{ $item->person }}</td>
+            <td>
+                @if ($item->status == 1)
+                    <span class="badge  bg-success">Complete</span>
+                    @else
+                     <span class="badge bg-info text-dark">Pending</span>
+                @endif
+            </td>
             </tr>
             @endforeach
 
