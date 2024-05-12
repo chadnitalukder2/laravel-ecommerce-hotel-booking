@@ -30,11 +30,11 @@
 
     <form class="row g-3">
         <div class="col-md-4">
-            <label for="input1" class="form-label">Room Type</label>
-            <select id="input7" name="room_id" class="form-select">
+            <label for="roomtype_id" class="form-label">Room Type</label>
+            <select id="room_id" name="room_id" class="form-select">
                 <option selected="">Select Room Type </option>
                 @foreach ($roomType as $item) 
-                <option value="{{ $item->room->id }}">{{ $item->name }}</option>
+                <option value="{{ $item->room->id }}" {{ collect(old('roomtype_id'))->contains($item->id) ? 'selected' : '' }}>{{ $item->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -119,59 +119,49 @@
 			</div>
 
 
-            <script type="text/javascript">
-                $(document).ready(function (){
-                    $('#myForm').validate({
-                        rules: {
-                            name: {
-                                required : true,
-                            }, 
-                            postion: {
-                                required : true,
-                            }, 
-                            facebook: {
-                                required : true,
-                            }, 
-                            image: {
-                                required : true,
-                            },
-                            
-                        },
-                        messages :{
-                            name: {
-                                required : 'Please Enter Team Name',
-                            }, 
-                            postion: {
-                                required : 'Please Enter Team Postion',
-                            }, 
-                            facebook: {
-                                required : 'Please Enter Facebook Url',
-                            },
-                            image: {
-                                required : 'Please Select Image',
-                            }, 
-                             
-            
-                        },
-                        errorElement : 'span', 
-                        errorPlacement: function (error,element) {
-                            error.addClass('invalid-feedback');
-                            element.closest('.form-group').append(error);
-                        },
-                        highlight : function(element, errorClass, validClass){
-                            $(element).addClass('is-invalid');
-                        },
-                        unhighlight : function(element, errorClass, validClass){
-                            $(element).removeClass('is-invalid');
-                        },
-                    });
-                });
-                
-            </script>
 
+<script>
+   $(document).ready(function (){
+      $("#room_id").on('change', function () {
+         $("#check_in").val('');
+         $("#check_out").val('');
+         $(".availability").text(0);
+         $("#available_room").val(0);
+      });
+      $("#check_out").on('change', function(){
+        getAvaility();
+      });
+    });
 
+    function getAvaility(){
+        var check_in = $('#check_in').val();
+        var check_out = $('#check_out').val();
+        var room_id = $("#room_id").val();
 
+        var startDate = new Date(check_in);
+        var endDate = new Date(check_out);
 
+        if( startDate > endDate){
+            alert('Invalid Date');
+            $("check_out").val('');
+            return false;
+        }
+    
+        if( check_in != '' && check_out != '' && room_id != ''){
+            $.ajax({
+                url: "{{ route('check_room_availability') }}",
+                data: {room_id:room_id, check_in:check_in, check_out:check_out},
+                success: function(data){
+                    $(".availability").text(data['available_room']);
+                    $("#available_room").val(data['available_room']);
+                }
+            }); 
+        }else{
+            alert('Field Must Be Not Empty')
+        }
+      
+    }//end method
+</script>
 
 
 @endsection
