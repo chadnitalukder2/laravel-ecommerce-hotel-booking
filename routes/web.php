@@ -145,6 +145,8 @@ Route::middleware(['auth'])->group(function(){
 
         Route::match(['get', 'post'], '/stripe_pay', [BookingController::class, 'stripe_pay'])->name('stripe_pay');
 
+        //User Booking Route
+        Route::get('/user/booking', 'UserBooking')->name('user.booking');
     });
 
 });//end group auth middleware

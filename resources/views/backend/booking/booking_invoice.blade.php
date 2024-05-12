@@ -52,10 +52,10 @@
         </td>
         <td align="right">
             <pre class="font" >
-               EasyShop Head Office
-               Email:support@easylearningbd.com <br>
-               Mob: 1245454545 <br>
-               Dhaka 1207,Dhanmondi:#4 <br>
+               EasyShop 
+               Email:chadnitalukder2@.com <br>
+               Mob: 01753507282 <br>
+               Derai, Sylhet <br>
               
             </pre>
         </td>
