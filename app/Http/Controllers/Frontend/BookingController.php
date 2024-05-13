@@ -213,7 +213,7 @@ public function UpdateBookingStatus(Request $request, $id){
     $booking->save();
 
     //Start Send Email
-    $sendmail = Booking::fin($id);
+    $sendmail = Booking::find($id);
     $data =[
         'check_in' => $sendmail->check_in,
         'check_out' => $sendmail->check_out,

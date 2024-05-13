@@ -18,7 +18,7 @@ class BookConfirm extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(private $data)
     {
         //
     }
@@ -31,7 +31,7 @@ class BookConfirm extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Book Confirm',
+            subject: 'Your Booking Is Confirm',
         );
     }
 
@@ -42,8 +42,10 @@ class BookConfirm extends Mailable
      */
     public function content()
     {
+        $booking = $this->data;
         return new Content(
-            view: 'view.name',
+            view: 'mail.booking_mail',
+            with:['booking' => $this->data],
         );
     }
 
