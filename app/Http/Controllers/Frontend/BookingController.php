@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Mail\BookConfirm;
+use App\Mail\BookRoom;
 use App\Models\Booking;
 use App\Models\BookingRoomList;
 use App\Models\Room;
@@ -165,6 +166,19 @@ class BookingController extends Controller
             $booked_dates->save();
         }
         Session::forget('book_date');
+
+        //Start Send Email
+        $sendmail = Booking::find($data->id);
+        $BookingData = [
+            'check_in' => $sendmail->check_in,
+            'check_out' => $sendmail->check_out,
+            'name' => $sendmail->name,
+            'email' => $sendmail->email,
+            'phone' => $sendmail->phone
+        ];
+        Mail::to($sendmail->email)->send(new BookRoom($BookingData));
+
+   //End Send Email
 
         $notification = array(
             'message' => 'Booking Added Successfully',
