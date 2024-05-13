@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\RoomListController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\BookAreaController;
 use App\Http\Controllers\Frontend\BookingController;
@@ -119,6 +120,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/add/room/list', 'AddRoomList')->name('add.room.list');
         Route::post('/store/room/list', 'StoreRoomList')->name('store.room.list');
         Route::get('/download/invoice/{id}', 'DownloadInvoice')->name('download.invoice');
+    });
+
+    //Admin
+    Route::controller(SettingController::class)->group(function () {
+        Route::get('/setting', 'SmtpSetting')->name('smtp.setting');
+
     });
   
 }); //end middleware

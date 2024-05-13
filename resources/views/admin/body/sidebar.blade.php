@@ -67,25 +67,30 @@
                 <div class="menu-title">Booking</div>
             </a>
             <ul>
-                <li> <a href="{{ route('booking.list') }}"><i class='bx bx-radio-circle'></i>Booking List</a>
-                </li>
-                <li> <a href="ecommerce-products-details.html"><i class='bx bx-radio-circle'></i>Product Details</a>
-                </li>
-               
+                <li> <a href="{{ route('booking.list') }}"><i class='bx bx-radio-circle'></i>Booking List</a></li>
+                <li> <a href="ecommerce-products-details.html"><i class='bx bx-radio-circle'></i>Product Details</a></li>
             </ul>
         </li>
+
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
-                </div>
+                <div class="parent-icon"><i class='bx bx-bookmark-heart'></i></div>
                 <div class="menu-title">Manage Room List</div>
             </a>
             <ul>
-                <li> <a href="{{ route('view.room.list') }}"><i class='bx bx-radio-circle'></i>Room List</a>
-                </li>
+                <li> <a href="{{ route('view.room.list') }}"><i class='bx bx-radio-circle'></i>Room List</a></li>
             </ul>
-      
-    
+        </li>
+
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class='bx bx-bookmark-heart'></i></div>
+                <div class="menu-title">Setting</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('smtp.setting') }}"><i class='bx bx-radio-circle'></i>SMTP Setting</a></li>
+            </ul>
+        </li>
       
            
       
