@@ -85,7 +85,7 @@ class TeamController extends Controller
 
         }//end else
        
-    }//end
+    }//end Method
 
     public function DeleteTeam($id){
         $item = Team::findOrFail($id);
