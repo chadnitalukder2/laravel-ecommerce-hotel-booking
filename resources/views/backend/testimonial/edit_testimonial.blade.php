@@ -51,7 +51,7 @@
                         <h6 class="mb-0">Message</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <input type="text" name="message" class="form-control" value="{{ $testimonial->message }}"  />
+                        <textarea type="text" name="message" class="form-control" rows="5"> {{ $testimonial->message }} </textarea>
                     </div>
                 </div>
 

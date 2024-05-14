@@ -49,7 +49,7 @@
                         <h6 class="mb-0">Message</h6>
                     </div>
                     <div class="form-group col-sm-9 text-secondary">
-                        <textarea type="text" name="message" class="form-control" placeholder="message..." rows="3"> </textarea>
+                        <textarea type="text" name="message" class="form-control" placeholder="message..." rows="5"> </textarea>
                     </div>
                 </div>
 
