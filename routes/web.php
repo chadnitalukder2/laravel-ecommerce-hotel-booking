@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\RoomListController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\BookAreaController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\FrontendRoomController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\UserController;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -122,14 +124,22 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/download/invoice/{id}', 'DownloadInvoice')->name('download.invoice');
     });
 
-    //Admin
+    //Admin  Smtp Setting
     Route::controller(SettingController::class)->group(function () {
         Route::get('/setting', 'SmtpSetting')->name('smtp.setting');
         Route::post('/smtp/update', 'SmtpUpdate')->name('smtp.update');
 
     });
+
+    //Admin  testimonial All Route
+    Route::controller(TestimonialController::class)->group(function () {
+        Route::get('/all/testimonial', 'AllTestimonial')->name('all.testimonial');
+       
+    });
+
+
   
-}); //end middleware
+}); //End Admin  Middleware
 
 
 //Frontend Room
