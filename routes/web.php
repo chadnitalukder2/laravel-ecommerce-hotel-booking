@@ -147,7 +147,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
     //Admin  Blog Category All Route
     Route::controller(BlogController::class)->group(function () {
         Route::get('/blog/category', 'BlogCategory')->name('blog.category');
-       
+        Route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
     });
 
 
