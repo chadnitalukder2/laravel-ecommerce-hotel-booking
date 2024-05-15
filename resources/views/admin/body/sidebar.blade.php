@@ -18,7 +18,7 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
-       
+<!--============================================-->
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
@@ -32,7 +32,7 @@
                 </li>
             </ul>
         </li>
-
+ <!--============================================-->
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
@@ -45,7 +45,7 @@
                
             </ul>
         </li>
-
+ <!--============================================-->
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
@@ -58,8 +58,8 @@
                
             </ul>
         </li>
-
-        <li class="menu-label">Booking Manage</li>
+ <!--============================================-->
+    <li class="menu-label">Booking Manage</li>
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-cart'></i>
@@ -71,7 +71,7 @@
                 <li> <a href="ecommerce-products-details.html"><i class='bx bx-radio-circle'></i>Product Details</a></li>
             </ul>
         </li>
-
+ <!--============================================-->
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i></div>
@@ -81,7 +81,7 @@
                 <li> <a href="{{ route('view.room.list') }}"><i class='bx bx-radio-circle'></i>Room List</a></li>
             </ul>
         </li>
-
+ <!--============================================-->
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i></div>
@@ -91,8 +91,8 @@
                 <li> <a href="{{ route('smtp.setting') }}"><i class='bx bx-radio-circle'></i>SMTP Setting</a></li>
             </ul>
         </li>
-
-           <li>
+ <!--============================================-->
+        <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i></div>
                 <div class="menu-title">Testimonial</div>
@@ -102,9 +102,24 @@
                 <li> <a href="{{ route('add.testimonial') }}"><i class='bx bx-radio-circle'></i>Add Testimonial</a></li>
             </ul>
         </li>
-      
-           
-      
+ <!--============================================-->
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+                </div>
+                <div class="menu-title">Blog</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('blog.category') }}"><i class='bx bx-radio-circle'></i>Blog Category </a>
+                </li>
+
+                <li> <a href="{{ route('add.testimonial') }}"><i class='bx bx-radio-circle'></i>Add Testimonial</a>
+                </li>
+
+
+            </ul>
+        </li>
+      <!--============================================-->
         
         <li class="menu-label">Others</li>
            

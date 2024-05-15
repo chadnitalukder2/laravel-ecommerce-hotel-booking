@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\RoomListController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TeamController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\UserController;
+use App\Models\BlogCategory;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Route;
 
@@ -140,6 +142,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/edit/testimonial/{id}', 'EditTestimonial')->name('edit.testimonial');
         Route::post('/update/testimonial', 'UpdateTestimonial')->name('update.testimonial');
         Route::get('/delete/testimonial/{id}', 'DeleteTestimonial')->name('delete.testimonial');
+    });
+
+    //Admin  Blog Category All Route
+    Route::controller(BlogController::class)->group(function () {
+        Route::get('/blog/category', 'BlogCategory')->name('blog.category');
+       
     });
 
 
