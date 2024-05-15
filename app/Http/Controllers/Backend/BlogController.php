@@ -66,7 +66,10 @@ class BlogController extends Controller
         return view('backend.blog_post.all_blog_post', compact('post'));
     }//End Method
 
-
+    public function AddBlogPost(){
+        $blogcat = BlogCategory::latest()->get();
+        return view('backend.blog_post.add_post', compact('blogcat'));
+    }//End Method
 
 
 }
