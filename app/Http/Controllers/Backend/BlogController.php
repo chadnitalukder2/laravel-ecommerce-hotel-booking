@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -11,7 +12,7 @@ class BlogController extends Controller
     public function BlogCategory(){
 
         $category = BlogCategory::latest()->get();
-        return view('backend.category.blog_category', compact('category'));
+        return view('backend.blog_category.blog_category', compact('category'));
     }//End Method
 
     public function StoreBlogCategory(Request $request){
@@ -32,7 +33,6 @@ class BlogController extends Controller
         $categories = BlogCategory::find($id);
         return response()->json($categories);
     }//End Method
-
 
     public function UpdateBlogCategory(Request $request){
         $cat_id= $request->cat_id;
@@ -59,6 +59,14 @@ class BlogController extends Controller
 
         return redirect()->back()->with($notification);
     }//End Method
+
+    //All Blog Post ==================================================================
+    public function AllBlogPost(){
+        $post = BlogPost::latest()->get();
+        return view('backend.blog_post.all_blog_post', compact('post'));
+    }//End Method
+
+
 
 
 }
