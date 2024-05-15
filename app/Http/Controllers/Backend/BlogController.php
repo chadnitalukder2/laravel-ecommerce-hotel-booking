@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -69,6 +71,33 @@ class BlogController extends Controller
     public function AddBlogPost(){
         $blogcat = BlogCategory::latest()->get();
         return view('backend.blog_post.add_post', compact('blogcat'));
+    }//End Method
+
+    public function StoreBlogPost(Request $request){
+        $image = $request->file('post_image');
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('upload/post_img'), $name_gen);
+        $save_url = 'upload/post_img/' . $name_gen;
+
+        BlogPost::insert([
+            'blogcat_id' => $request->blogcat_id,
+            'user_id' => Auth::user()->id,
+            'post_title' => $request->post_title,
+            'post_slug' => strtolower(str_replace(' ', '-', $request->post_title)), // Hotel Room = hotel-room,
+            'short_descp' => $request->short_descp,
+            'long_descp' => $request->long_descp,
+            'post_image' => $save_url,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Blog Post  Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.blog.post')->with($notification);
+
+
     }//End Method
 
 

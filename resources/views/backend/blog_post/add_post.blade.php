@@ -28,8 +28,8 @@
 
             <div class="card-body p-4">
 
-                <form  id="myForm" class="row g-3">
-
+                <form  id="myForm" class="row g-3" action="{{ route('store.blog.post') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="col-md-6">
                         <label for="input7" class="form-label">Blog Category</label>
                         <select name="blogcat_id" id="input7" class="form-select form-control">
