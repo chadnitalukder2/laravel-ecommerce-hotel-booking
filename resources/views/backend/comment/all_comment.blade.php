@@ -50,9 +50,9 @@
                             <td>{{ Str::limit($item->message, 40)  }}</td>
                             <td>
                                 <div class="form-check-danger form-check form-switch">
-									<input class="form-check-input large-checkbox status-toggle" data-comment-id="{{ $item->id }}" {{ $item->status ? 'checked' : '' }}  type="checkbox" id="flexSwitchCheckCheckedDanger">
-									<label class="form-check-label" for="flexSwitchCheckCheckedDanger"></label>
-								</div>
+                                    <input class="form-check-input status-toggle large-checkbox" type="checkbox" id="flexSwitchCheckCheckedDanger" data-comment-id="{{ $item->id }}" {{ $item->status ? 'checked' : '' }} >
+                                    <label class="form-check-label" for="flexSwitchCheckCheckedDanger"> </label>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
@@ -75,24 +75,21 @@
         $('.status-toggle').on('change', function(){
             var commentId = $(this).data('comment-id');
             var isChecked = $(this).is(':checked');
-
-            //Send on ajax request to update status
+            // Send an ajax request to update status 
             $.ajax({
                 url: "{{ route('update.comment.status') }}",
                 method: "POST",
-                data:{
-                    comment_id:commentId,
-                    is_checked : isChecked ? 1 : 0,
-                    _token: "{{ csrf_token }}"
+                data: {
+                    comment_id: commentId,
+                    is_checked: isChecked ? 1 : 0,
+                    _token: "{{ csrf_token() }}"
                 },
                 success: function(response){
                     toastr.success(response.message);
                 },
                 error: function(){
-
                 }
-            });
-
+            }); 
         });
     });
 </script>

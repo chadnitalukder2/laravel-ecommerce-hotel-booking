@@ -164,7 +164,8 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
 
     //Admin Comment Controller
     Route::controller(CommentController::class)->group(function () {
-        Route::get('/all.comment','AllComment')->name('all.comment');
+        Route::get('/all/comment','AllComment')->name('all.comment');
+        Route::post('/update/comment/status', 'UpdateCommentStatus')->name('update.comment.status');
     });
   
 }); //End Admin  Middleware
