@@ -65,58 +65,48 @@
                                         </p>
 										 
                                     </li>
-                                    
-                                    <li>
-										<img src="assets/img/blog/blog-profile2.jpg" alt="Image">
-										<h3>Mike Thomas</h3>
-										<span>October 14, 2020, 11:30 AM</span>
-										<p>
-                                            Engineering requires many building blocks and tools. To produce real world 
-                                            results & one must  mathematics and sciences to tangible problems and we 
-                                            are one of the  best company in the world. 
-                                        </p>
-										 
-                                    </li>
 								</ul>
                             </div>
 
                             <div class="comments-form">
                                 <div class="contact-form">
                                     <h2>Leave A Comment</h2>
-                                    <form id="contactForm">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <input type="text" name="name" id="name" class="form-control" required data-error="Please enter your name" placeholder="Your Name">
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-lg-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <input type="email" name="email" id="email" class="form-control" required data-error="Please enter your email" placeholder="Your Email">
-                                                </div>
-                                            </div>
 
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <input type="text" name="websit" class="form-control" required data-error="Your website" placeholder="Your website">
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <textarea name="message" class="form-control" id="message" cols="30" rows="8" required data-error="Write your message" placeholder="Your Message"></textarea>
-                                                </div>
-                                            </div>
+     @php
+         if(Auth::check()){
+            $id = Auth::user()->id;
+            $userData = App\Models\User::fiind($id);
+         }
+         else {
+            $userData = null;
+         }
+     @endphp
+    @auth
+        <form id="contactForm">
+            @csrf
+            <input type="hidden" name="post_id" value="{{ $blog->id }}">
+            @if ($userData)
+                <input type="hidden" name="user_id" value="{{ $userData->id }}">
+            @endif
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" id="message" cols="30" rows="8" required data-error="Write your message" placeholder="Your Message"></textarea>
+                    </div>
+                </div>
 
-                                           
-                                            <div class="col-lg-12 col-md-12">
-                                                <button type="submit" class="default-btn btn-bg-three">
-                                                    Post A Comment
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
+                
+                <div class="col-lg-12 col-md-12">
+                    <button type="submit" class="default-btn btn-bg-three">
+                        Post A Comment
+                    </button>
+                </div>
+            </div>
+        </form>
+        @else
+        <p>Please <a href="{{ route('login') }}">Login</a> First And Comment</p>
+ @endauth
+
                                 </div>
                             </div>
                         </div>
