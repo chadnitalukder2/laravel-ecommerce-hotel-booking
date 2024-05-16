@@ -161,10 +161,14 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
 
 
     });
-//======================== End Admin  Group Middleware=================================
 
+    //Admin Comment Controller
+    Route::controller(CommentController::class)->group(function () {
+        Route::get('/all.comment','AllComment')->name('all.comment');
+    });
   
 }); //End Admin  Middleware
+//======================== End Admin  Group Middleware=================================
 
 
 //========================Start Frontend WithOut Auth  Group Middleware=================================
