@@ -75,14 +75,14 @@
      @php
          if(Auth::check()){
             $id = Auth::user()->id;
-            $userData = App\Models\User::fiind($id);
+            $userData = App\Models\User::find($id);
          }
          else {
             $userData = null;
          }
      @endphp
     @auth
-        <form id="contactForm">
+        <form  action="{{ route('store.comment') }}" method="post">
             @csrf
             <input type="hidden" name="post_id" value="{{ $blog->id }}">
             @if ($userData)

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\RoomListController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TeamController;
@@ -177,11 +178,16 @@ Route::controller(FrontendRoomController::class)->group(function () {
     Route::get('/check_room_availability', 'CheckRoomAvailability')->name('check_room_availability');
 });
 
-//Front Blog All route
+//Frontend Blog All route
 Route::controller(BlogController::class)->group(function () {
     Route::get('/blog/details/{slug}', 'BlogDetails');
     Route::get('/blog/cat/list/{id}', 'BlogCatList');
     Route::get('/blog/list/', 'BlogList')->name('blog.list');
+});
+//Frontend Comment Controller
+Route::controller(CommentController::class)->group(function () {
+    Route::post('/store.comment', 'StoreComment')->name('store.comment');
+   
 });
 //========================End Frontend WithOut Auth  Group Middleware=================================
 
