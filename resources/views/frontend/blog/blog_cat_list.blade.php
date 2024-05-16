@@ -10,9 +10,9 @@
                             <a href="index.html">Home</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
-                        <li>Blog Style Two</li>
+                        <li>{{ $namecat->category_name }}</li>
                     </ul>
-                    <h3>Blog Style Two</h3>
+                    <h3>{{ $namecat->category_name }}</h3>
                 </div>
             </div>
         </div>

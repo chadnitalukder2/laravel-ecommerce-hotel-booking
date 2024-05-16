@@ -179,9 +179,10 @@ class BlogController extends Controller
         $blog = BlogPost::where('blogcat_id', $id)->get();
         $bcategory = BlogCategory::latest()->get();
         $lpost = BlogPost::latest()->limit(3)->get();
+        $namecat = BlogCategory::where('id', $id)->first();
 
         $blog = BlogPost::where('blogcat_id', $id)->get();
-        return view('frontend.blog.blog_cat_list', compact('blog', 'bcategory', 'lpost'));
+        return view('frontend.blog.blog_cat_list', compact('blog', 'bcategory', 'lpost', 'namecat'));
     }//End Method
 
 
