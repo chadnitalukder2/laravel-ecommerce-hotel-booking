@@ -25,7 +25,7 @@
     <div class="col-lg-8">
         <div class="card">
 
-    <form action="{{ route('smtp.update') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ route('site.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
     <input type="hidden" name="id" value="{{ $site->id }}">
@@ -91,10 +91,10 @@
                         <h6 class="mb-0"> Logo </h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <input type="file" name="logo" class="form-control"    />
+                        <input type="file" name="logo" class="form-control" id="image"   />
 
 
-                         <img src="{{ asset($site->logo) }}" alt="" style="width: 100px; height:100px;">
+                         <img id="showImage" src="{{ asset($site->logo) }}" alt="" style="width: 100px; height:100px;">
                     </div>
                 </div>
 
@@ -120,5 +120,18 @@
 				</div>
 			</div>
 
+
+            
+      <script type="text/javascript">
+        $(document).ready(function(){
+            $('#image').change(function(e){
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    $('#showImage').attr('src',e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+        </script>   
 
 @endsection
