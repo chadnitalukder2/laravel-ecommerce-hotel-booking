@@ -30,7 +30,7 @@
                                 <div class="col-lg-5 col-md-4 p-0">
                                     <div class="blog-img">
                                         <a href="{{ url('blog/details/'.$item->post_slug) }}">
-                                            <img src="{{ asset($item->post_image) }}" alt="Images" width="600px" height="400px">
+                                            <img src="{{ asset($item->post_image) }}" alt="Images" width="700px" height="400px">
                                         </a>
                                     </div>
                                 </div>
