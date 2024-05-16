@@ -132,6 +132,8 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/setting', 'SmtpSetting')->name('smtp.setting');
         Route::post('/smtp/update', 'SmtpUpdate')->name('smtp.update');
 
+        Route::get('/site/setting', 'SiteSetting')->name('site.setting');
+
     });
 
     //Admin  testimonial All Route
