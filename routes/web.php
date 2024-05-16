@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Admin  Group Middleware
+//======================== start Admin  Group Middleware=================================
 Route::middleware(['auth', 'roles:admin'])->group(function(){
 
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
@@ -57,13 +57,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('admin/password/update', [AdminController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
 
-
-
 });// End Admin  Group Middleware
+//======================== start Admin  Group Middleware=================================
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 
-// Admin  Group Middleware
+//======================== start Admin  Group Middleware=================================
 Route::middleware(['auth', 'roles:admin'])->group(function(){
     
     //Team all route
@@ -158,14 +157,16 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/edit/blog/post/{id}', 'EditBlogPost')->name('edit.blog.post');
         Route::post('/update/blog/post', 'UpdateBlogPost')->name('update.blog.post');
         Route::get('/delete/blog/post/{id}', 'DeleteBlogPost')->name('delete.blog.post');
-    });
 
+
+    });
+//======================== End Admin  Group Middleware=================================
 
   
 }); //End Admin  Middleware
 
 
-//Frontend Room
+//========================Start Frontend WithOut Auth  Group Middleware=================================
 Route::controller(FrontendRoomController::class)->group(function () {
     Route::get('/rooms', 'frontendRoomAll')->name('froom.all');
     Route::get('/room/details/{id}', 'RoomDetailsPage');
@@ -176,7 +177,13 @@ Route::controller(FrontendRoomController::class)->group(function () {
     Route::get('/check_room_availability', 'CheckRoomAvailability')->name('check_room_availability');
 });
 
-//Auth Middleware user must have login for access this route
+//Front Blog All route
+Route::controller(BlogController::class)->group(function () {
+    Route::get('/blog/details/{slug}', 'BlogDetails');
+});
+//========================End Frontend WithOut Auth  Group Middleware=================================
+
+//========================Start Auth Middleware user must have login for access this route=================================
 Route::middleware(['auth'])->group(function(){
 //CheckOut All Route
     Route::controller(BookingController::class)->group(function () {
@@ -193,4 +200,4 @@ Route::middleware(['auth'])->group(function(){
     });
 
 });//end group auth middleware
-  
+  //========================End Auth Middleware user must have login for access this route=================================
