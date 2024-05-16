@@ -180,6 +180,7 @@ Route::controller(FrontendRoomController::class)->group(function () {
 //Front Blog All route
 Route::controller(BlogController::class)->group(function () {
     Route::get('/blog/details/{slug}', 'BlogDetails');
+    Route::get('/blog/cat/list/{id}', 'BlogCatList');
 });
 //========================End Frontend WithOut Auth  Group Middleware=================================
 
