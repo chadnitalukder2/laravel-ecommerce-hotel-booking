@@ -75,7 +75,7 @@
             <label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
         </div>
     </div>
-    <div class="col-md-6 text-end">	<a href="authentication-forgot-password.html">Forgot Password ?</a>
+    <div class="col-md-6 text-end">	<a href="authentication-forgot-password.html">Forgot Password  8888?</a>
     </div>
     <div class="col-12">
         <div class="d-grid">
