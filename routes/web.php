@@ -11,6 +11,7 @@ use App\Http\Controllers\BookAreaController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\FrontendRoomController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\UserController;
@@ -167,6 +168,13 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/all/comment','AllComment')->name('all.comment');
         Route::post('/update/comment/status', 'UpdateCommentStatus')->name('update.comment.status');
     });
+
+    //Booking Report All Route
+    Route::controller(ReportController::class)->group(function () {
+        Route::get('/booking/report', 'BookingReport')->name('booking.report');
+        Route::post('/search-by-date', 'SearchByDate')->name('search-by-date');
+    });
+  
   
 }); //End Admin  Middleware
 //======================== End Admin  Group Middleware=================================
