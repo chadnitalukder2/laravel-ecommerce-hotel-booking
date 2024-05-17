@@ -229,6 +229,7 @@ Route::controller(GalleryController::class)->group(function () {
 //Frontend Contact all Route 
 Route::controller(ContactController::class)->group(function () {
     Route::get('/contact', 'ContactUs')->name('contact.us');
+    Route::post('/store/contact', 'StoreContact')->name('store.contact');
 });
 //========================End Frontend WithOut Auth  Group Middleware=================================
 
