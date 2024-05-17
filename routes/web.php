@@ -219,6 +219,11 @@ Route::controller(CommentController::class)->group(function () {
     Route::post('/store.comment', 'StoreComment')->name('store.comment');
    
 });
+
+//Frontend Gallery Controller
+Route::controller(GalleryController::class)->group(function () {
+    Route::get('/gallery', 'ShowGallery')->name('show.gallery');
+});
 //========================End Frontend WithOut Auth  Group Middleware=================================
 
 //========================Start Auth Middleware user must have login for access this route=================================
