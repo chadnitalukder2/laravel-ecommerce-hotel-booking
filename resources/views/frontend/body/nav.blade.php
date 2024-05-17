@@ -57,7 +57,7 @@
 
                         <li class="nav-item">
                             <a href="{{ route('froom.all') }}" class="nav-link">
-                               All Rooms
+                                Rooms
                             </a>
                             <ul class="dropdown-menu">
                                  @foreach ($room  as $item) 
@@ -71,7 +71,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="contact.html" class="nav-link">
+                            <a href="{{ route('contact.us') }}" class="nav-link">
                                 Contact
                             </a>
                         </li>

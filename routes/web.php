@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\BookAreaController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\FrontendRoomController;
 use App\Http\Controllers\ProfileController;
@@ -223,6 +224,11 @@ Route::controller(CommentController::class)->group(function () {
 //Frontend Gallery Controller
 Route::controller(GalleryController::class)->group(function () {
     Route::get('/gallery', 'ShowGallery')->name('show.gallery');
+});
+
+//Frontend Contact all Route 
+Route::controller(ContactController::class)->group(function () {
+    Route::get('/contact', 'ContactUs')->name('contact.us');
 });
 //========================End Frontend WithOut Auth  Group Middleware=================================
 
