@@ -182,6 +182,9 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
     //Booking Report All Route
     Route::controller(GalleryController::class)->group(function () {
         Route::get('/all/gallery', 'AllGallery')->name('all.gallery');
+        Route::get('/add/gallery', 'AddGallery')->name('add.gallery');
+
+        Route::post('/store/gallery', 'StoreGallery')->name('store.gallery');
     });
   
   
