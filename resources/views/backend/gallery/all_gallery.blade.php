@@ -29,10 +29,14 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                
+            <form action="{{ route('delete.gallery.multiple') }}" method="POST">
+                @csrf
+                <table class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Sl</th>
+                            <th style="width: 50px">Select</th>
+                            <th style="width: 50px">Sl</th>
                             <th>Image</th> 
                             <th>Action</th>
                         </tr>
@@ -40,13 +44,15 @@
                     <tbody>
                        @foreach ($gallery as $key=> $item ) 
                         <tr>
+                            <td>
+                                <input type="checkbox" name="selectedItem[]" value="{{ $item->id }}">
+                            </td>
                             <td>{{ $key+1 }}</td>
                             <td> <img src="{{ asset($item->photo_name) }}" alt="" style="width:70px; height:40px;" > </td>
 
                             <td>
-    <a href="{{ route('edit.gallery',$item->id) }}" class="btn btn-warning px-3 radius-30"> Edit</a>
-    <a href="{{ route('delete.gallery',$item->id) }}" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
-`
+                                <a href="{{ route('edit.gallery',$item->id) }}" class="btn btn-warning px-3 radius-30"> Edit</a>
+                                <a href="{{ route('delete.gallery',$item->id) }}" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
                             </td>
                         </tr>
                         @endforeach 
@@ -54,6 +60,8 @@
                     </tbody>
 
                 </table>
+                 <button type="submit" class="btn btn-danger">Delete Selected</button>
+            </form>
             </div>
         </div>
     </div>

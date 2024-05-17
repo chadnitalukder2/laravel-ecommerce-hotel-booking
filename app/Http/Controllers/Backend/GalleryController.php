@@ -86,5 +86,22 @@ class GalleryController extends Controller
 
     }//End Method
 
+    public function DeleteGalleryMultiple(Request $request){
+        $selectedItem = $request->input('selectedItem', []);
+        foreach ($selectedItem as  $itemId) {
+           $item = Gallery::find($itemId);
+           $img = $item->photo_name;
+           unlink($img);
+           $item->delete();
+        } //End Foreach
+
+        $notification = array(
+            'message' => 'Selected Image Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.gallery')->with($notification);
+    }//End Method
+
 
 }
