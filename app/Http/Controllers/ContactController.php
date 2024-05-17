@@ -32,5 +32,11 @@ class ContactController extends Controller
     }//End Method
 
 
+    //Admin======================================
+
+    public function ContactMessage(){
+        $contact = Contact::latest()->get();
+        return view('backend.contact.contact_message', compact('contact'));
+    }//End Method
 
 }
