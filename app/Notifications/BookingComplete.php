@@ -16,9 +16,9 @@ class BookingComplete extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name)
     {
-        //
+        $this->name = $name;
     }
 
     /**
@@ -29,7 +29,7 @@ class BookingComplete extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +55,7 @@ class BookingComplete extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'message' => 'New Booking Added in Hotel'
         ];
     }
 }

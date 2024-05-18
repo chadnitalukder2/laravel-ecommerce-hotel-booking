@@ -17,11 +17,11 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Stripe;
-use Stripe\Stripe as StripeStripe;
+use Notification;
 
 class BookingController extends Controller
 {
@@ -191,7 +191,7 @@ class BookingController extends Controller
         );
 
         //Start Send Notification admin page
-        Notification::send($user, new BookingComplete($request->name) );
+        Notification::send($user, new BookingComplete($request->name));
        //End Send Notification admin page
 
         return redirect('/')->with($notification);  
