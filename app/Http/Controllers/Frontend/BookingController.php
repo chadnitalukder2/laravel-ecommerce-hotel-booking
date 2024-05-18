@@ -10,11 +10,14 @@ use App\Models\BookingRoomList;
 use App\Models\Room;
 use App\Models\RoomBookedDate;
 use App\Models\RoomNumber;
+use App\Models\User;
+use App\Notifications\BookingComplete;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Stripe;
@@ -78,6 +81,8 @@ class BookingController extends Controller
     } //End Method
 
     public function CheckoutStore(Request $request){
+        $user = User::where('role', 'admin')->get();
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
@@ -184,6 +189,11 @@ class BookingController extends Controller
             'message' => 'Booking Added Successfully',
             'alert-type' => 'success'
         );
+
+        //Start Send Notification admin page
+        Notification::send($user, new BookingComplete($request->name) );
+       //End Send Notification admin page
+
         return redirect('/')->with($notification);  
 
 
