@@ -17,7 +17,7 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-
+use Illuminate\Notifications\Events\NotificationSent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Stripe;
@@ -198,6 +198,21 @@ class BookingController extends Controller
 
 
     }//end method
+
+    //======================Notification start==========================================
+    public function MarkAsRead(Request $request, $notificationId){
+        $user = Auth::user();
+        $notification = $user->notifications()->where('id', $notificationId )->first();
+   
+        if($notification){
+            $notification->MarkAsRead();
+        }
+        return response()->json(['count' => $user->unreadNotifications()->count()]);
+   
+    }//End
+
+    //======================Notification End==========================================
+
 
     public function UserBooking(){
         $id = Auth::user()->id;

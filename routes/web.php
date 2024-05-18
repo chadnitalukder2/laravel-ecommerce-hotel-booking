@@ -199,7 +199,10 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/contact/message', 'ContactMessage')->name('contact.message');
        
     });
-  
+    //Notification  all Route 
+    Route::controller(BookingController::class)->group(function () {
+        Route::post('/mark-notification-as-read/{notificationId}', 'MarkAsRead');
+    });
   
 }); //End Admin  Middleware
 //======================== End Admin  Group Middleware=================================
