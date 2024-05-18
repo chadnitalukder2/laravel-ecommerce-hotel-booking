@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\GalleryController;
+use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\RoomListController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TeamController;
@@ -199,9 +200,15 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/contact/message', 'ContactMessage')->name('contact.message');
        
     });
+
     //Notification  all Route 
     Route::controller(BookingController::class)->group(function () {
         Route::post('/mark-notification-as-read/{notificationId}', 'MarkAsRead');
+    });
+
+    //Role  all Route 
+    Route::controller(RoleController::class)->group(function () {
+        Route::get('/all/permission', 'AllPermission')->name('all.permission');
     });
   
 }); //End Admin  Middleware
