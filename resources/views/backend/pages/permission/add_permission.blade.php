@@ -28,7 +28,7 @@
 
             <div class="card-body p-4">
 
-                <form  id="myForm" class="row g-3" action="{{ route('store.gallery') }}" method="post" enctype="multipart/form-data">
+                <form  id="myForm" class="row g-3" action="{{ route('store.permission') }}" method="post" enctype="multipart/form-data">
                     @csrf
                    
                     <div class="col-md-6 form-group">
@@ -39,7 +39,7 @@
 
                     <div class="col-md-6 form-group">
                         <label for="input1" class="form-label">Permission Group</label>
-                          <select class="form-select mb-3" aria-label="Default select example">
+                          <select name="group_name" class="form-select mb-3" aria-label="Default select example">
                             <option selected="">Select Group </option>
                             <option value="Team">Team </option>
                             <option value="Book Area">Book Area</option>
