@@ -229,6 +229,8 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/add/roles/permission', 'AddRolesPermission')->name('add.roles.permission');
         Route::post('/store/roles/permission', 'StoreRolesPermission')->name('store.roles.permission');
         Route::get('/all/roles/permission', 'AllRolesPermission')->name('all.roles.permission');
+
+        Route::get('/admin/edit/roles/{id}', 'AdminEditRoles')->name('admin.edit.roles');
     });
   
 }); //End Admin  Middleware
