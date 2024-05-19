@@ -32,7 +32,7 @@
 
             <div class="card-body p-4">
 
-       <form  class="row g-3" action="{{ route('store.roles') }}" method="post" enctype="multipart/form-data">
+       <form  class="row g-3" action="{{ route('store.roles.permission') }}" method="post" enctype="multipart/form-data">
          @csrf
 
 
