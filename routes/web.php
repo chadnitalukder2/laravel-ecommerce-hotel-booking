@@ -206,7 +206,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::post('/mark-notification-as-read/{notificationId}', 'MarkAsRead');
     });
 
-    //Role  all Route 
+    //Permission  all Route 
     Route::controller(RoleController::class)->group(function () {
         Route::get('/all/permission', 'AllPermission')->name('all.permission');
         Route::get('/add/permission', 'AddPermission')->name('add.permission');
@@ -214,6 +214,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::get('/edit/permission/{id}', 'EditPermission')->name('edit.permission');
         Route::post('/update/permission', 'UpdatePermission')->name('update.permission');
         Route::get('/delete/permission/{id}', 'DeletePermission')->name('delete.permission');
+    });
+    //Role  all Route 
+    Route::controller(RoleController::class)->group(function () {
+        Route::get('/all/roles', 'AllRoles')->name('all.roles');
+        Route::get('/add/roles', 'AddRoles')->name('add.roles');
+        Route::post('/store/roles', 'StoreRoles')->name('store.roles');
     });
   
 }); //End Admin  Middleware
