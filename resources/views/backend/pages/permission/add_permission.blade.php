@@ -45,6 +45,7 @@
                             <option value="Book Area">Book Area</option>
                             <option value="Manage Room">Manage Room</option>
                             <option value="Booking">Booking</option>
+                              <option value="Booking Report">Booking Report</option>
                             <option value="RoomList">RoomList</option>
                             <option value="Setting">Setting</option>
                             <option value="Tesimonial">Tesimonial</option>

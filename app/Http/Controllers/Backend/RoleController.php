@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -135,7 +136,8 @@ class RoleController extends Controller
     public function AddRolesPermission(){
         $roles = Role::all();
         $permissions = Permission::all();
-        return view('backend.pages.role_setup.add_roles_permission', compact('roles', 'permissions'));
+        $permission_groups = User::getsPermissionGroups();
+        return view('backend.pages.role_setup.add_roles_permission', compact('roles', 'permissions', 'permission_groups'));
     }//End Method
 
 
