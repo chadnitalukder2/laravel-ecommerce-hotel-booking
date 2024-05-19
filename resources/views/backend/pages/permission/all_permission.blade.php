@@ -46,8 +46,8 @@
                             <td>{{ $item->group_name }}</td>
                         
                             <td>
-                                <a href="{{ route('edit.team',$item->id) }}" class="btn btn-warning px-3 radius-30">Edit</a>
-                                <a href="{{ route('delete.team',$item->id) }}" id="delete" class="btn btn-danger px-3 radius-30">delete</a>
+                                <a href="{{ route('edit.permission',$item->id) }}" class="btn btn-warning px-3 radius-30">Edit</a>
+                                <a href="{{ route('delete.permission',$item->id) }}" id="delete" class="btn btn-danger px-3 radius-30">delete</a>
                             </td>
                         </tr>
                         @endforeach
