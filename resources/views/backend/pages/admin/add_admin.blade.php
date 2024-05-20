@@ -28,7 +28,7 @@
 
             <div class="card-body p-4">
 
-                <form  id="myForm" class="row g-3" action="{{ route('store.permission') }}" method="post" enctype="multipart/form-data">
+                <form  id="myForm" class="row g-3" action="{{ route('store.admin') }}" method="post" enctype="multipart/form-data">
                     @csrf
                    
                    
@@ -39,7 +39,7 @@
 
                     <div class="col-md-6 form-group">
                         <label for="input1" class="form-label">Admin User Email</label>
-                        <input type="eamil" name="eamil"  class="form-control"  >
+                        <input type="email" name="email"  class="form-control"  >
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="input1" class="form-label">Admin User PHone</label>
