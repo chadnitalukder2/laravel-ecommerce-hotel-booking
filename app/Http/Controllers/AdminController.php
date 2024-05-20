@@ -8,7 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 class AdminController extends Controller
 {
     public function AdminDashboard(){
@@ -100,6 +101,9 @@ class AdminController extends Controller
         return view('backend.pages.admin.all_admin',compact('allAdmin'));
     }//End method
 
-
+    public function AddAdmin(){
+        $roles = Role::all();
+        return view('backend.pages.admin.add_admin', compact('roles'));
+    }//End Method
     
 }
