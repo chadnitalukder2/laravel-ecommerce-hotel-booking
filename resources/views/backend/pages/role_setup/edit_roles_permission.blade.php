@@ -32,10 +32,10 @@
 
             <div class="card-body p-4">
 
-       <form  class="row g-3" action="{{ route('store.roles.permission') }}" method="post" enctype="multipart/form-data">
+       <form  class="row g-3" action="{{ route('admin.roles.update', $role->id) }}" method="post" enctype="multipart/form-data">
          @csrf
 
-
+       
 
     <div class="col-md-6">
         <label for="input1" class="form-label">Roles Name </label>
@@ -67,7 +67,7 @@
             
             @foreach ( $permissions as $permission )
              <div class="form-check">
-                <input class="form-check-input" name="permission[]" type="checkbox" value="{{ $permission->id }}" id="CheckDefault {{ $permission->id }} " {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }}>
+                 <input class="form-check-input" type="checkbox" name="permission[]"  id="CheckDefault{{ $permission->id }}" value="{{ $permission->id }}" {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }}>
                 <label class="form-check-label" for="CheckDefault {{ $permission->id }}">{{ $permission->name }} </label>
             </div>
              @endforeach
