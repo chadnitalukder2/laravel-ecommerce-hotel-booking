@@ -194,7 +194,6 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::post('/delete/gallery/multiple/', 'DeleteGalleryMultiple')->name('delete.gallery.multiple');
     });
 
-
     //Frontend Contact all Route 
     Route::controller(ContactController::class)->group(function () {
         Route::get('/contact/message', 'ContactMessage')->name('contact.message');
@@ -215,6 +214,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
         Route::post('/update/permission', 'UpdatePermission')->name('update.permission');
         Route::get('/delete/permission/{id}', 'DeletePermission')->name('delete.permission');
     });
+
     //Role  all Route 
     Route::controller(RoleController::class)->group(function () {
         Route::get('/all/roles', 'AllRoles')->name('all.roles');
@@ -235,6 +235,16 @@ Route::middleware(['auth', 'roles:admin'])->group(function(){
 
         Route::get('/admin/delete/roles/{id}', 'AdminDeleteRoles')->name('admin.delete.roles');
     });
+
+    //Admin  Smtp Setting
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/all/admin', 'AllAdmin')->name('all.admin');
+      
+    });
+
+
+
+
   
 }); //End Admin  Middleware
 //======================== End Admin  Group Middleware=================================
