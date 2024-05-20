@@ -53,8 +53,8 @@
                             <td>{{ $item->phone }}</td>
                             <td>{{ $item->role }}</td>
                             <td>
-                                <a href="{{ route('edit.roles',$item->id) }}" class="btn btn-warning px-3 radius-30">Edit</a>
-                                <a href="{{ route('delete.permission',$item->id) }}" id="delete" class="btn btn-danger px-3 radius-30">delete</a>
+                                <a href="{{ route('edit.admin',$item->id) }}" class="btn btn-warning px-3 radius-30">Edit</a>
+                                <a href="{{ route('delete.admin',$item->id) }}" id="delete" class="btn btn-danger px-3 radius-30">delete</a>
                             </td>
                         </tr>
                         @endforeach
