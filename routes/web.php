@@ -45,3 +45,6 @@ Route::middleware(['auth', 'practice:Nitesh'])->group(function(){
     Route::get('/practice', [PracticeControler::class, 'practice'])->name('practice');
 
 });// End Admin  Group Middleware
+
+
+
