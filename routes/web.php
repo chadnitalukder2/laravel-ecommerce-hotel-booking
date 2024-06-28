@@ -310,3 +310,5 @@ Route::middleware(['auth'])->group(function(){
 
 });//end group auth middleware
   //========================End Auth Middleware user must have login for access this route=================================
+
+  
